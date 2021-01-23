@@ -27,6 +27,12 @@ Now you have two remotes for this project:
 - _origin_ which points to your Github fork of the project. You can read and write to this remote.
 - _upstream_ which point to the main project's Github repository. You can only read from this remote.
 
+## Get it working on your computer
+
+Now you have the source code, get it working on your computer by following instruction on [installation guide](INSTALLATION.md).
+
+If you get it working, but the documentation is unclear, then improving that bit should be your first PR to the project.
+
 ## Do some work
 
 Pick up an issue, reproduce it on your version. Once you have reproduced it, read the code to work out where the problem is. Once you've found the code problem, you can move on to fixing it.

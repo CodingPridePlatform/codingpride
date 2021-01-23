@@ -1,0 +1,29 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'bootstrap5/css/bootstrap.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bs5/css/bootstrap.min.css' %}">
+
+    <title></title>
+  </head>
+  <body>
+    {% include 'pages/includes/header.html' %}
+
+      {% block content %}
+
+
+      {% endblock %}
+
+    {% include 'pages/includes/footer.html' %}
+
+
+
+    <!-- <script type="text/javascript" src="{% static 'bootstraps5/js/bootstrap.js' %}"></script> -->
+    <script type="text/javascript" src="{% static 'bs5/js/bootstrap.min.js' %}"></script>
+
+  </body>
+</html>

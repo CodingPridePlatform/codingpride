@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.css' %}">
+    <title></title>
+  </head>
+  <body>
+    {% include 'pages/includes/header.html' %}
+
+    {% block content %} {% endblock %}
+
+
+    {% include 'pages/includes/footer.html' %}
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+  </body>
+</html>

@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+    "python.pythonPath": "venv\\Scripts\\python.exe",
     "editor.formatOnPaste": true,
     "editor.formatOnType": true,
     "editor.formatOnSave": true,

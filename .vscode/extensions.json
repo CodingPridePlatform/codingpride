@@ -5,6 +5,7 @@
         "kevinrose.vsc-python-indent",
         "ms-python.vscode-pylance",
         "esbenp.prettier-vscode",
-        "njpwerner.autodocstring"
+        "njpwerner.autodocstring",
+        "thebarkman.vscode-djaneiro",
     ]
 }

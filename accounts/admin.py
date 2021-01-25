@@ -4,6 +4,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
 
 from .forms import UserChangeForm, UserCreationForm
+from .models import Profile
 
 User = get_user_model()
 
@@ -32,6 +33,11 @@ class CustomUserAdmin(BaseUserAdmin):
     search_fields = ('email',)
     ordering = ('email', )
     filter_horizontal = ()
+
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    pass
 
 
 # Register the new UserAdmin...

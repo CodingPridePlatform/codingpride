@@ -9,7 +9,9 @@ from .models import Profile
 User = get_user_model()
 
 
-class CustomUserAdmin(BaseUserAdmin):
+# Register the new UserAdmin...
+@admin.register(User)
+class UserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
@@ -39,9 +41,6 @@ class CustomUserAdmin(BaseUserAdmin):
 class ProfileAdmin(admin.ModelAdmin):
     pass
 
-
-# Register the new UserAdmin...
-admin.site.register(User, CustomUserAdmin)
 
 # Unregister the Group model from admin.
 # since we're not using Django's built-in permissions,

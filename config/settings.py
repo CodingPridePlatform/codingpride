@@ -36,6 +36,8 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1',
 INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
 
+    'crispy_forms',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,3 +136,16 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
+
+if not DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = config('EMAIL_HOST')
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+    EMAIL_PORT = config('PORT', cast=int)
+    EMAIL_USE_SSL = config('PORT', cast=bool)
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    EMAIL_FILE_PATH = BASE_DIR / 'sent_mails'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

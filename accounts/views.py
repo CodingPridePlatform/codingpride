@@ -1,13 +1,14 @@
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, update_session_auth_hash
 from django.core.mail import EmailMessage
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.template.loader import get_template
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views.generic import CreateView, View
+from django.contrib.auth.forms import PasswordChangeForm
 
 from . import forms
 from .models import Profile
@@ -63,3 +64,19 @@ class ConfirmRegistrationView(View):
                           'Please login to continue..'))
 
         return redirect('accounts:login')
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('accounts:change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'registration/change_password.html', {
+        'form': form
+    })

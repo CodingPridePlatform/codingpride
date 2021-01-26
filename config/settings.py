@@ -34,17 +34,19 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1',
 # Application definition
 
 INSTALLED_APPS = [
+    #Custom Apps
     'accounts.apps.AccountsConfig',
-
     'crispy_forms',
-
+    'main',
+    
+    #Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'codingpride',
+    
 ]
 
 MIDDLEWARE = [

@@ -137,6 +137,8 @@ STATICFILES_DIRS = [
 
 AUTH_USER_MODEL = 'accounts.User'
 
+BASE_URL = config('BASE_URL', default='http://127.0.0.1:8000')
+
 if not DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = config('EMAIL_HOST')
@@ -145,6 +147,7 @@ if not DEBUG:
     EMAIL_USE_SSL = config('PORT', cast=bool)
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 else:
+    EMAIL_HOST_USER = 'noreply@codingpride.com'
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = BASE_DIR / 'sent_mails'
 

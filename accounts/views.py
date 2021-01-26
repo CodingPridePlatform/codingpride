@@ -15,11 +15,6 @@ from .tokens import account_activation_token_generator
 
 User = get_user_model()
 
-if not settings.DEBUG:
-    BASE_URL = ''
-else:
-    BASE_URL = 'http://127.0.0.1:8000'
-
 
 class UserRegistrationView(CreateView):
     form_class = forms.UserCreationForm
@@ -32,8 +27,8 @@ class UserRegistrationView(CreateView):
         # send confirmation email
         token = account_activation_token_generator.make_token(user)
         user_id = urlsafe_base64_encode(force_bytes(user.id))
-        url = BASE_URL + reverse(
-            'accounts:confirm-email',
+        url = settings.BASE_URL + reverse(
+            'accounts:confirm_email',
             kwargs={'user_id': user_id, 'token': token})
         message = get_template(
             'registration/account_activation_email.html'
@@ -42,7 +37,7 @@ class UserRegistrationView(CreateView):
             'CodingPride Account Confirmation',
             message,
             to=[user_email],
-            from_email='noreply@codingpride.com')
+            from_email=settings.EMAIL_HOST_USER)
         mail.content_subtype = 'html'
         mail.send()
         messages.success(self.request,

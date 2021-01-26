@@ -1,3 +1,5 @@
+
+from django.shortcuts import render
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -8,6 +10,8 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views.generic import CreateView, View
+from . import forms
+
 
 from . import forms
 from .models import Profile
@@ -63,3 +67,18 @@ class ConfirmRegistrationView(View):
                           'Please login to continue..'))
 
         return redirect('accounts:login')
+
+
+def loginView(request, *args, **kwargs):
+    form = forms.UserLoginForm()
+    if request.method == 'POST':
+        form = forms.UserLoginForm(request.POST or None)
+        if form.is_valid():
+            user_obj = form.cleaned_data.get('user_obj')
+            login(request, user_obj)
+            return HttpResponseRedirect('/')
+    myTemplate = 'registration/login.html'
+    context = {
+        'form':form
+    }
+    return render(request, myTemplate, context)

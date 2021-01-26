@@ -10,7 +10,7 @@ urlpatterns = [
     path('register/', views.UserRegistrationView.as_view(),
          name='accounts-register'),
      path('login/',
-         auth_views.LoginView.as_view(template_name='registration/login.html'), name='login'),
+         views.loginView, name='login'),
     path('confirm-email/<str:user_id>/<str:token>/',
          views.ConfirmRegistrationView.as_view(), name='confirm_email'), 
 

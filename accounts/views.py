@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import get_user_model, update_session_auth_hash
+from django.contrib.auth import get_user_model, update_session_auth_hash,login,logout
 from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 from django.template.loader import get_template
@@ -11,16 +11,19 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views.generic import CreateView, View
 from django.contrib.auth.forms import PasswordChangeForm
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
-from . import forms
+from .forms import *
 from .models import Profile
 from .tokens import account_activation_token_generator
+
 
 User = get_user_model()
 
 
 class UserRegistrationView(CreateView):
-    form_class = forms.UserCreationForm
+    form_class = UserCreationForm
     template_name = 'registration/signup.html'
     success_url = '/'
 
@@ -70,9 +73,9 @@ class ConfirmRegistrationView(View):
 
 
 def loginView(request, *args, **kwargs):
-    form = forms.UserLoginForm()
+    form = UserLoginForm()
     if request.method == 'POST':
-        form = forms.UserLoginForm(request.POST or None)
+        form = UserLoginForm(request.POST or None)
         if form.is_valid():
             user_obj = form.cleaned_data.get('user_obj')
             login(request, user_obj)
@@ -83,6 +86,7 @@ def loginView(request, *args, **kwargs):
     }
     return render(request, myTemplate, context)
 
+@login_required
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -99,3 +103,32 @@ def change_password(request):
         'form': form
     })
 
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST,
+                                   request.FILES,
+                                   instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated!')
+            return redirect('accounts:profile')
+
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'registration/profile.html', context)
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('accounts:login')

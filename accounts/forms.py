@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm
+from django.db.models import Q
 
 User = get_user_model()
 
@@ -51,3 +52,24 @@ class UserChangeForm(forms.ModelForm):
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
         return self.initial["password"]
+    
+
+
+class UserLoginForm(forms.Form):
+    query = forms.CharField(label = 'Email')
+    password = forms.CharField(label = 'Password', widget = forms.PasswordInput)
+
+    def clean(self, *args, **kwargs):
+        query = self.cleaned_data.get('query')
+        password = self.cleaned_data.get('password')
+        user_qs_final = User.objects.filter(
+            Q(email__iexact=query)
+        ).distinct()
+        if not user_qs_final.exists() and user_qs_final.count != 1:
+            raise forms.ValidationError("Invalid Credentials provided!")
+        user_obj = user_qs_final.first()
+        if not user_obj.check_password(password):
+            raise forms.ValidationError("Credentials are not correct!")
+        self.cleaned_data["user_obj"] = user_obj
+        return super(UserLoginForm, self).clean(*args, **kwargs)
+

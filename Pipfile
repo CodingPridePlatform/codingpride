@@ -13,6 +13,7 @@ six = "*"
 [dev-packages]
 pytest = "*"
 autopep8 = "*"
+six = "*"
 
 [requires]
 python_version = "3.8"

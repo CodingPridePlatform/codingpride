@@ -1,3 +1,5 @@
+
+from django.shortcuts import render
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model, update_session_auth_hash
@@ -65,6 +67,22 @@ class ConfirmRegistrationView(View):
 
         return redirect('accounts:login')
 
+
+
+def loginView(request, *args, **kwargs):
+    form = forms.UserLoginForm()
+    if request.method == 'POST':
+        form = forms.UserLoginForm(request.POST or None)
+        if form.is_valid():
+            user_obj = form.cleaned_data.get('user_obj')
+            login(request, user_obj)
+            return HttpResponseRedirect('/')
+    myTemplate = 'registration/login.html'
+    context = {
+        'form':form
+    }
+    return render(request, myTemplate, context)
+
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -80,3 +98,4 @@ def change_password(request):
     return render(request, 'registration/change_password.html', {
         'form': form
     })
+

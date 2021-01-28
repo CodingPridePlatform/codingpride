@@ -61,16 +61,13 @@ class User(AbstractBaseUser):
 
 
 class Profile(models.Model):
-    """
-    User profile created when user complete account activation.
-    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     image= models.ImageField(default= 'default.jpg', upload_to= 'profile_pictures')
 
     def __str__(self):
         return f'{self.name}\'s Profile'
-    
+
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
 

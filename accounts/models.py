@@ -61,9 +61,6 @@ class User(AbstractBaseUser):
 
 
 class Profile(models.Model):
-    """
-    User profile created when user complete account activation.
-    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     image = models.ImageField(

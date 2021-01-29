@@ -23,7 +23,7 @@ User = get_user_model()
 class UserRegistrationView(CreateView):
     form_class = UserCreationForm
     template_name = 'registration/signup.html'
-    success_url = '/'
+    success_url = reverse_lazy('accounts:login')
 
     def form_valid(self, form):
         user_email = form.cleaned_data['email']
@@ -60,7 +60,6 @@ class ConfirmRegistrationView(View):
         if user and account_activation_token_generator.check_token(
                 user, token):
             user.is_active = True
-            Profile.objects.create(user=user)
             user.save()
             messages.success(
                 request, ('Registration completed successful. '

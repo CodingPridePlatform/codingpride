@@ -1,23 +1,21 @@
 
-from django.shortcuts import render
 from django.conf import settings
 from django.contrib import messages
-from django.contrib.auth import get_user_model, update_session_auth_hash,login,logout
+from django.contrib.auth import get_user_model, login, logout, update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.core.mail import EmailMessage
-from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.shortcuts import redirect, render
 from django.template.loader import get_template
 from django.urls import reverse
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views.generic import CreateView, View
-from django.contrib.auth.forms import PasswordChangeForm
-from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
 
 from .forms import *
 from .models import Profile
 from .tokens import account_activation_token_generator
-
 
 User = get_user_model()
 
@@ -55,7 +53,7 @@ class ConfirmRegistrationView(View):
     """View for user to confirm registration."""
 
     def get(self, request, user_id, token):
-        user_id = force_text(urlsafe_base64_decode(user_id))
+        user_id = force_str(urlsafe_base64_decode(user_id))
 
         user = User.objects.get(pk=user_id)
 
@@ -121,7 +119,7 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
-    
+
     context = {
         'u_form': u_form,
         'p_form': p_form

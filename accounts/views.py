@@ -4,13 +4,11 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.template.loader import get_template
 from django.urls import reverse, reverse_lazy
-from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
 from django.views.generic import CreateView, View
 
 from .forms import *
@@ -29,21 +27,8 @@ class UserRegistrationView(CreateView):
         user_email = form.cleaned_data['email']
         user = form.save()
         # send confirmation email
-        token = account_activation_token_generator.make_token(user)
-        user_id = urlsafe_base64_encode(force_bytes(user.id))
-        url = settings.BASE_URL + reverse(
-            'accounts:confirm_email',
-            kwargs={'user_id': user_id, 'token': token})
-        message = get_template(
-            'registration/account_activation_email.html'
-        ).render({'confirm_url': url})
-        mail = EmailMessage(
-            'CodingPride Account Confirmation',
-            message,
-            to=[user_email],
-            from_email=settings.EMAIL_HOST_USER)
-        mail.content_subtype = 'html'
-        mail.send()
+        form.send_confirmation_email(user, user_email)
+
         messages.success(self.request,
                          'Please check your email for confimation.')
         return super().form_valid(form)

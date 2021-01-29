@@ -53,7 +53,6 @@ class ConfirmRegistrationView(View):
         return redirect('accounts:login')
 
 
-
 def loginView(request, *args, **kwargs):
     form = UserLoginForm()
     if request.method == 'POST':
@@ -64,9 +63,10 @@ def loginView(request, *args, **kwargs):
             return HttpResponseRedirect('/')
     myTemplate = 'registration/login.html'
     context = {
-        'form':form
+        'form': form
     }
     return render(request, myTemplate, context)
+
 
 @login_required
 def change_password(request):
@@ -75,7 +75,8 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
+            messages.success(
+                request, 'Your password was successfully updated!')
             return redirect('accounts:change_password')
         else:
             messages.error(request, 'Please correct the error below.')
@@ -103,12 +104,12 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
-
     context = {
         'u_form': u_form,
         'p_form': p_form
     }
     return render(request, 'registration/profile.html', context)
+
 
 @login_required
 def logout_view(request):

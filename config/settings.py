@@ -34,19 +34,19 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1',
 # Application definition
 
 INSTALLED_APPS = [
-    #Custom Apps
+    # Custom Apps
     'accounts.apps.AccountsConfig',
     'crispy_forms',
     'main',
-    
-    #Django Apps
+
+    # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -146,7 +146,7 @@ if not DEBUG:
     EMAIL_HOST = config('EMAIL_HOST')
     EMAIL_HOST_USER = config('EMAIL_HOST_USER')
     EMAIL_PORT = config('PORT', cast=int)
-    EMAIL_USE_SSL = config('PORT', cast=bool)
+    EMAIL_USE_SSL = config('PORT', cast=bool, default=True)
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 else:
     EMAIL_HOST_USER = 'noreply@codingpride.com'

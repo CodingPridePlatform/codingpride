@@ -6,7 +6,7 @@ from PIL import Image
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError('User must have an email address')
 
         user = self.model(
             email=self.normalize_email(email),
@@ -61,16 +61,14 @@ class User(AbstractBaseUser):
 
 
 class Profile(models.Model):
-    """
-    User profile created when user complete account activation.
-    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    image= models.ImageField(default= 'default.jpg', upload_to= 'profile_pictures')
+    image = models.ImageField(
+        default='profile_pictures/default.jpg', upload_to='profile_pictures')
 
     def __str__(self):
         return f'{self.name}\'s Profile'
-    
+
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
 

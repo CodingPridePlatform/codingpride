@@ -9,7 +9,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.template.loader import get_template
 from django.urls import reverse, reverse_lazy
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.views.generic import CreateView, View
 
@@ -53,7 +53,7 @@ class ConfirmRegistrationView(View):
     """View for user to confirm registration."""
 
     def get(self, request, user_id, token):
-        user_id = force_text(urlsafe_base64_decode(user_id))
+        user_id = force_str(urlsafe_base64_decode(user_id))
 
         user = User.objects.get(pk=user_id)
 

@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Open Sans', sans-serif;
+    src: url("../static/fonts/OpenSans-Regular.ttf");
+}
+
+html, body {
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif !important;
+}
+
+.navibar-search{
+    width: 60%;
+}
+
+.navibar-nav-items{
+    margin-left: 10%;
+}
+
+@media only screen and (max-width: 768px){
+    .left-sidebar{
+       display:none;
+
+   }
+   .desktop-logo{
+       display:none;
+   }
+}
+
+/* ----------------------- Setting Sidebars-------------------------- */
+
+@media only screen and (min-width: 768px){
+    .mobile-logo{
+        display:none;
+    }
+}
+

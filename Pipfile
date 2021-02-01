@@ -12,9 +12,10 @@ six = "*"
 pillow = "*"
 
 [dev-packages]
-pytest = "*"
 autopep8 = "*"
 six = "*"
+pytest-cov = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.8"

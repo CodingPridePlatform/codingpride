@@ -2,9 +2,17 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block stylesheet %}
+<style>
+  footer{
+    display:none;
+  }
+</style>
+{% endblock stylesheet %}
+
 {% block content %}
 <div class="container py-5">
-  <form method="POST" class="col-md-6 offset-md-3 card">
+  <form method="POST" class="col-md-6 offset-md-3 card login-form">
     {% csrf_token %}
     <div class="card-body">
       <h2 class="mb-5 text-center">Sign Up</h2>
@@ -41,7 +49,7 @@
         {% endif %}
       {% endfor %}
 
-      <button class="btn" style="background-color: #600021; color: #fff;">Sign Up</button>
+      <button class="btn">Sign Up</button> Already Registered? <strong><a href="{% url 'accounts:login' %}">Login</a></strong>
     </div>
   </form>
 </div>

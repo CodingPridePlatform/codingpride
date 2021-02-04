@@ -1,28 +1,61 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
+
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-           
-            </div>
-            <div class="col-md-6">
-                <form method="POST">
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        <legend class="border-bottom mb-4">Log In</legend>
-                        {{ form|crispy }}
-                    </fieldset>
-                    <div class="form-group">
-                        <button class="btn btn-outline-info" type="submit">Login</button>
-                    </div>
-                </form>
-                <div class="border-top pt-3">
-                    <small class="text-muted">
-                        Forgot Password? <a class="ml-2" href="{% url 'accounts:password_reset' %}">Reset Now!</a>
-                    </small>
+<div class="container py-5">
+    <form method="POST" class="col-md-6 offset-md-3 card">
+        {% csrf_token %}
+        <div class="card-body">
+            <h2 class="mb-5 text-center">Sign in</h2>
+
+            {% for field in form %}
+            {% if form.is_bound %}
+            {% if field.errors %}
+            <div class="form-floating mb-3">
+                <input type="{% if field == form.email %}email{% else %}password{% endif %}" name="{{ field.name }}"
+                    value="{{ field.value }}" class="form-control is-invalid" id="{{ field.id_for_label }}"
+                    placeholder="{% if field == form.email %}name@example.com{% else %}Password{% endif %}">
+                <label for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
+                {% for error in field.errors %}
+                <div class="invalid-feedback">
+                    {{ error }}
                 </div>
+                {% endfor %}
             </div>
-        </form>
-    </div>
+            {% else %}
+            <div class="form-floating mb-3">
+                <input type="{% if field == form.email %}email{% else %}password{% endif %}" name="{{ field.name }}"
+                    value="{{ field.value }}" class="form-control is-valid" id="{{ field.id_for_label }}"
+                    placeholder="{% if field == form.email %}name@example.com{% else %}Password{% endif %}">
+                <label for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
+            </div>
+            {% endif %}
+            {% else %}
+            <div class="form-floating mb-3">
+                <input type="{% if field == form.email %}email{% else %}password{% endif %}" name="{{ field.name }}"
+                    class="form-control" id="{{ field.id_for_label }}"
+                    placeholder="{% if field == form.email %}name@example.com{% else %}Password{% endif %}">
+                <label for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="d-flex mb-2 ">
+               <small>
+                   <a href="#" style="text-decoration: none; color: darkcyan;"> Forgot password </a>
+               </small>
+               <small>
+                   <a href="#" style="position:absolute; left: 25vw; text-decoration: none; color: darkcyan;"> Don't have an account?</a>
+               </small> 
+            </div>
+            <button class="btn" style="background-color: #600021; color: #fff;">Sign In</button>
+        </div>
+    </form>
+</div>
 {% endblock content %}

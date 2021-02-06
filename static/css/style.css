@@ -13,10 +13,6 @@ body {
     font-family: 'Open Sans', sans-serif !important;
 }
 
-.navibar-search{
-    width: 60%;
-}
-
 .navibar-nav-items{
     margin-left: 10%;
 }
@@ -39,3 +35,137 @@ body {
     }
 }
 
+
+/* ----------------------------- Login Form------------------------------- */
+ @media only screen and (min-width:768px){
+    .login-form{
+        width: 30%;
+        margin-top: 10%;
+        }
+        
+ 
+ }
+ .login-form button{
+    background-color: #008080;
+    color: #fff;
+}
+.login-form a{
+   color:#008080;
+   text-decoration: none;
+}
+
+/* ----------------Header----------------------------- */
+.navibar-strip-top{
+    background-color: #008080;
+    height: 4px;
+    width: 100%;
+}
+
+.navbar{
+    box-shadow: 0px 8px 10px #888888;
+}
+
+.navibar-button{
+    margin-right:20%;
+}
+
+/* ----------------------------CENTER COLUMN-CONTENT--------------------- */
+.content-center-div{
+    padding-top: 4%;
+}
+
+
+.updates-bar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+}
+.updates-bar li{
+    float: right; 
+    position: relative;
+}
+
+.updates-bar .btn:hover{
+    text-decoration: none;
+    background-color: #efefef;
+    color:#333;
+    margin:0;
+    border: 1px solid #008080;
+}
+.updates-bar .btn{
+border-radius: 0;
+border: 1px solid #008080;
+}
+
+.home-counter{
+    display: block;
+}
+
+.home-counter .vote-circle{
+background-color: #008080;
+color: #fff;
+width: 30px;
+height: 30px;
+text-align: center;
+line-height:30px;
+}
+
+.home-counter .answers-circle{
+    background-color: #008080;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+}
+.home-qn-section{
+    padding-top:3%;
+    padding-bottom:2%;       
+}
+.home-qn-section img{
+   height: 50px;
+   width: 50px;
+   margin-right: 0!important;
+}
+.home-qn-section a{
+    text-decoration: none;  
+}
+.qn-cartegories p{
+font-size:13px;
+}
+
+/* -----------------------------RIGHT CONTENT SECTION-------------------------- */
+.content-right-div{
+    padding-top: 8%;
+}
+
+.hot-questions-section a{
+text-decoration: none;
+}
+
+.logged-user{
+    text-align: center;
+    background-color: #efefef;
+    padding: 1% 0% 1% 0%;
+    margin-bottom: 1%;
+    border-radius: 30px;
+
+}
+
+/* -----------------------LEFT CONTENT SECTION----------------- */
+
+
+.left-sidebar .nav-pills .nav-link {
+    border-radius: 0px;
+}
+
+/* --------------------------------FOOTER--------------------------- */
+.footer-content{
+color: #fff;
+padding-top: 5%;
+text-align: center;
+}
+.footer-content a{
+    color: #fff;
+    
+}

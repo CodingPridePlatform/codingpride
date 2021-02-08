@@ -14,7 +14,7 @@ html, body {
 }
 
 .custom-border-right{
-  border-right: 2px solid #600021;
+  border-right: 4px solid #600021;
 }
 
 /* Header */
@@ -240,11 +240,8 @@ text-decoration: none;
   border-radius: 30px;
 
 }
-
-/* -----------------------LEFT CONTENT SECTION----------------- */
-
-
 /* --------------------------------FOOTER--------------------------- */
+
 .footer-content{
   color: #fff;
   padding-top: 5%;
@@ -253,5 +250,9 @@ text-decoration: none;
   .footer-content a{
       color: #fff;
       
+  }
+  .footer-and-content-fix{
+    display: flex;
+    height: 90px;
   }
   

@@ -2,27 +2,33 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 
-html, body {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  color: #242729;
-  line-height: 1.30769231;
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .custom-border-top{
   border-top: 2px solid #009999;
 }
 
-.custom-border-right{
-  border-right: 2px solid #600021;
+
+.navibar-nav-items {
+    margin-left: 10%;
 }
 
-/* Header */
+@media only screen and (max-width: 768px) {
+    .left-sidebar {
+        display: none;
 
-.navbar-light .navbar-toggler{
-  color: teal;
-  border:none;
-  margin-right: -65px;
+    }
+
+    .desktop-logo {
+        display: none;
+    }
+
 }
 
 .navbar-toggler {
@@ -35,42 +41,48 @@ html, body {
   transition: box-shadow .15s ease-in-out;
 }
 
-@media only screen and (min-width: 768px){
-  .mobile-logo{
-      display:none;
-  }
+
+@media only screen and (min-width: 768px) {
+    .mobile-logo {
+        display: none;
+    }
+
 }
 
 /* End of Header */
 
-@media only screen and (max-width: 768px){
- .desktop-logo{
-     display:none;
- }
-}
 
-/* Login Form */
-@media only screen and (min-width:768px){
-  .login-form{
-      width: 30%;
-      margin-top: 10%;
-      }    
+
+/* ----------------------------- Login Form------------------------------- */
+@media only screen and (min-width:768px) {
+    .login-form {
+        width: 30%;
+        margin-top: 10%;
+    }
+
 
 }
-.login-form button{
-  background-color: #008080;
-  color: #fff;
-}
-.login-form a{
- color:#008080;
- text-decoration: none;
+
+.login-form button {
+    background-color: #008080;
+    color: #fff;
 }
 
-/* Header */
+.login-form a {
+    color: #008080;
+    text-decoration: none;
+}
 
-.navbar{
-  background-color: #fff;
-  box-shadow: 0px 0px 5px #c4c4c4;
+/* ----------------Header----------------------------- */
+.navibar-strip-top {
+    background-color: #008080;
+    height: 4px;
+    width: 100%;
+}
+
+.navbar {
+    box-shadow: 0px 8px 10px #888888;
+
 }
   
   .feather {
@@ -142,25 +154,17 @@ html, body {
     right: 1rem;
   }
 
-  .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
-    width: 100%;
-    padding-right: 45px;
-    padding-left: 45px;
-    margin-right: auto;
-    margin-left: auto;
-  }
 
-  @media screen and (max-width: 980px){
-    .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
 
-  }
+.navibar-button {
+    margin-right: 20%;
+}
 
-  /* -----------CENTER COLUMN-CONTENT-- */
-.content-center-div{
-  padding-top: 4%;
+/* ----------------------------CENTER COLUMN-CONTENT--------------------- */
+.content-center-div {
+    padding-top: 4%;
+    margin-left: 0;
+
 }
 
 
@@ -169,89 +173,113 @@ html, body {
   padding: 0;
   margin: 0 auto;
 }
-.updates-bar li{
-  float: right; 
-  position: relative;
+
+
+.updates-bar li {
+    float: right;
+    position: relative;
 }
 
-.updates-bar .btn:hover{
-  text-decoration: none;
-  background-color: #efefef;
-  color:#333;
-  margin:0;
-  border: 1px solid #008080;
-}
-.updates-bar .btn{
-border-radius: 0;
-border: 1px solid #008080;
+.updates-bar .btn:hover {
+    text-decoration: none;
+    background-color: #efefef;
+    color: #333;
+    margin: 0;
+    border: 1px solid #008080;
+
 }
 
-.home-counter{
-  display: block;
+.updates-bar .btn {
+    border-radius: 0;
+    border: 1px solid #008080;
 }
 
-.home-counter .vote-circle{
-background-color: #008080;
-color: #fff;
-width: 30px;
-height: 30px;
-text-align: center;
-line-height:30px;
+
+
+.home-counter {
+    display: block;
 }
 
-.home-counter .answers-circle{
-  background-color: #008080;
-  color: #fff;
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
+.home-counter .vote-circle {
+    background-color: #008080;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
 }
-.home-qn-section{
-  padding-top:3%;
-  padding-bottom:2%;       
+
+
+.home-counter .answers-circle {
+    background-color: #008080;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
 }
-.home-qn-section img{
- height: 50px;
- width: 50px;
- margin-right: 0!important;
+
+.home-qn-section {
+    padding-top: 3%;
+    padding-bottom: 2%;
 }
-.home-qn-section a{
-  text-decoration: none;  
+
+.home-qn-section img {
+    height: 50px;
+    width: 50px;
+    margin-right: 0 !important;
 }
-.qn-cartegories p{
-font-size:13px;
+
+.home-qn-section a {
+    text-decoration: none;
+}
+
+.qn-cartegories p {
+    font-size: 13px;
 }
 
 /* -----------------------------RIGHT CONTENT SECTION-------------------------- */
-.content-right-div{
-  padding-top: 8%;
+
+.content-right-div {
+    padding-top: 8%;
+    max-width: 300px;
 }
 
-.hot-questions-section a{
-text-decoration: none;
+.hot-questions-section a {
+    text-decoration: none;
 }
 
-.logged-user{
-  text-align: center;
-  background-color: #efefef;
-  padding: 1% 0% 1% 0%;
-  margin-bottom: 1%;
-  border-radius: 30px;
+
+.logged-user {
+    text-align: center;
+    background-color: #efefef;
+    /* padding: 1% 0% 1% 0%; */
+    margin-bottom: 1%;
+    border-radius: 30px;
 
 }
 
 /* -----------------------LEFT CONTENT SECTION----------------- */
 
 
+.left-sidebar .nav-pills .nav-link {
+    border-radius: 0px;
+}
+
+.left-sidebar {
+    position: sticky;
+    top: 3rem;
+    max-height: 30vh;
+}
+
 /* --------------------------------FOOTER--------------------------- */
-.footer-content{
-  color: #fff;
-  padding-top: 5%;
-  text-align: center;
-  }
-  .footer-content a{
-      color: #fff;
-      
-  }
-  
+.footer-content {
+    color: #fff;
+    padding-top: 5%;
+    text-align: center;
+}
+
+.footer-content a {
+    color: #fff;
+
+}

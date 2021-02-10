@@ -13,10 +13,6 @@
     background-color: #008080;
 }
 
-.bottom-spacer{
-    display: flex;
-    height: 50px;
-}
 
 input:focus, input.form-control:focus {
 

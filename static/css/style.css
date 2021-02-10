@@ -1,7 +1,6 @@
-@font-face {
-    font-family: 'Open Sans', sans-serif;
-    src: url("../static/fonts/OpenSans-Regular.ttf");
-}
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 
 html,
 body {
@@ -10,8 +9,8 @@ body {
     padding: 0;
 }
 
-body {
-    font-family: 'Open Sans', sans-serif !important;
+.custom-border-top{
+  border-top: 2px solid #009999;
 }
 
 .navibar-nav-items {
@@ -29,7 +28,15 @@ body {
     }
 }
 
-/* ----------------------- Setting Sidebars-------------------------- */
+.navbar-toggler {
+  padding: .15rem .75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  transition: box-shadow .15s ease-in-out;
+}
 
 @media only screen and (min-width: 768px) {
     .mobile-logo {
@@ -37,6 +44,7 @@ body {
     }
 }
 
+/* End of Header */
 
 /* ----------------------------- Login Form------------------------------- */
 @media only screen and (min-width:768px) {
@@ -68,6 +76,75 @@ body {
 .navbar {
     box-shadow: 0px 8px 10px #888888;
 }
+  
+  .feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+  }
+  
+  /*
+   * Sidebar
+   */
+  
+  .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    padding: 60px 0 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    background-color: #fff;
+  }
+  
+  .sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 60px);
+    padding-top: 30px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  @supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar-sticky {
+      position: -webkit-sticky;
+      position: sticky;
+    }
+  }
+  
+  .sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+  }
+  
+  .sidebar .nav-link.active {
+    color: #ffffff;
+  }
+  
+  .sidebar .nav-link:hover .feather,
+  .sidebar .nav-link.active .feather {
+    color: inherit;
+  }
+  
+  /*
+   * Navbar
+   */
+  
+  .navbar-brand {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+  }
+  
+  .navbar .navbar-toggler {
+    top: .25rem;
+    right: 1rem;
+  }
 
 .navibar-button {
     margin-right: 20%;
@@ -81,9 +158,9 @@ body {
 
 
 .updates-bar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 auto;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
 }
 
 .updates-bar li {

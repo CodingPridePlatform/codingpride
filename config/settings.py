@@ -38,10 +38,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'crispy_forms',
     'main',
-<<<<<<< HEAD
     'question',
-=======
->>>>>>> 84fcb323da63d72d4c28cc09bb83961dacfae6dd
     'widget_tweaks',
     'taggit',
     'ckeditor',

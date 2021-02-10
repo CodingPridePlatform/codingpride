@@ -1,0 +1,59 @@
+.btn-primary,
+.bg-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: #009999;
+}
+
+.btn-primary {
+    border: none;
+}
+
+.bg-primary,
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.nav-pills .nav-item .active {
+    background: #009999;
+}
+
+.left-sidebar {
+    position: sticky;
+    top: 6rem;
+    height: 30vh;
+}
+
+@media(max-width:768px) {
+    .left-sidebar {
+        display: none;
+    }
+}
+
+.counter {
+    background-color: #009999;
+    color: #fff;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    margin: 0 auto;
+}
+
+.tag {
+    background-color: #ccc;
+    padding: 0.4rem 0.5rem;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    color: #333;
+    text-decoration: none;
+}
+
+.social-links a {
+    text-decoration: none;
+}
+
+.social-links .fab {
+    width: 50px;
+    color: #fff;
+}

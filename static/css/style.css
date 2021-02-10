@@ -171,6 +171,16 @@ text-align: center;
 }
 
 /* --------------------------------QUESTION------------------------------ */
+.question-section{
+    margin-bottom: 10%;
+}
+@media only screen and (max-width: 768px){
+    .question-section{
+        margin-bottom: 25%;
+    }
+}
+
+
 .question-form-container{
   border: 1px solid #008080;
   padding: 3%;

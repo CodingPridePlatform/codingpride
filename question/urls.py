@@ -4,5 +4,5 @@ from .views import *
 app_name = 'question'
 
 urlpatterns = [
-    path('question/', question, name='qn-create'),
+    path('', question, name='qn-create'),
 ]

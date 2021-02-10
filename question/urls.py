@@ -1,8 +1,8 @@
 from django.urls import path, include
 from .views import *
 
-app_name = 'main'
+app_name = 'question'
 
 urlpatterns = [
-    path('', home, name='home'),
+    path('question/', question, name='qn-create'),
 ]

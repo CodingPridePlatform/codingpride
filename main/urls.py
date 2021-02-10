@@ -5,5 +5,4 @@ app_name = 'main'
 
 urlpatterns = [
     path('', home, name='home'),
-    path('question/', question, name='qn-create'),
 ]

@@ -188,3 +188,12 @@ body {
     color: #fff;
 
 }
+
+/* --------------------------------QUESTION------------------------------ */
+.question-form-container{
+  border: 1px solid #008080;
+  padding: 3%;
+  border-radius: 5px;
+  margin-top: 2%;
+  background-color:#fff
+}

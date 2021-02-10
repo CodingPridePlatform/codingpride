@@ -10,6 +10,7 @@ django-crispy-forms = "*"
 psycopg2 = "*"
 six = "*"
 pillow = "*"
+django-taggit = "*"
 
 [dev-packages]
 autopep8 = "*"

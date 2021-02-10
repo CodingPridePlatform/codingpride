@@ -12,3 +12,18 @@
     color: #fff;
     background-color: #008080;
 }
+
+.bottom-spacer{
+    display: flex;
+    height: 50px;
+}
+
+input:focus, input.form-control:focus {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: #008080;
+}

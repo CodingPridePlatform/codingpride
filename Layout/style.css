@@ -1,3 +1,7 @@
+a {
+    text-decoration: none;
+}
+
 .btn-primary,
 .bg-primary,
 .btn-primary:hover,
@@ -31,22 +35,15 @@
     }
 }
 
-.counter {
-    background-color: #009999;
-    color: #fff;
-    border-radius: 50%;
-    width: 2rem;
-    height: 2rem;
-    margin: 0 auto;
-}
-
 .tag {
     background-color: #ccc;
-    padding: 0.4rem 0.5rem;
-    margin-right: 1rem;
+    font-size: .9rem;
+    padding: 0.4rem;
     border-radius: 0.5rem;
     color: #333;
     text-decoration: none;
+    display: inline-block;
+    margin: 0.4rem 0.4rem 0.4rem 0;
 }
 
 .social-links a {

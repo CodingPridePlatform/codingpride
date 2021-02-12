@@ -1,3 +1,8 @@
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
 a {
     text-decoration: none;
 }
@@ -44,6 +49,12 @@ a {
     text-decoration: none;
     display: inline-block;
     margin: 0.4rem 0.4rem 0.4rem 0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .social-links a {

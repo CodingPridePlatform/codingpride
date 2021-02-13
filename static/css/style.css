@@ -5,9 +5,12 @@
 
 html,
 body {
+    position: relative;
+    min-height: 100vh;
     height: 100%;
     margin: 0;
     padding: 0;
+    --theme:  #008080;
 }
 
 body {
@@ -178,6 +181,12 @@ body {
 }
 
 /* --------------------------------FOOTER--------------------------- */
+footer {
+    background: var(--theme);
+    bottom: 0;
+    width: 100%;
+}
+
 .footer-content {
     color: #fff;
     padding-top: 5%;

@@ -1,5 +1,6 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load humanize %}
 {% block content%}
 <div class="container">
   {% for question in questions %} 
@@ -36,7 +37,7 @@
             </div>
             </div>
             <div class="col-sm-4">
-              <p>Asked {{ question.date_published | timesince }} ago</p>
+              <p>Asked {{ question.date_published | naturaltime }} </p>
               <div class="row">
                 <div class="col-sm-6">
                  <img src="{% static 'profile_pictures/default.jpg' %}" alt="">

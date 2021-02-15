@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from ckeditor.fields import RichTextField
 from taggit.managers import TaggableManager
+from datetime import datetime
 
 # Create your models here.
 class Question(models.Model):
@@ -13,3 +14,4 @@ class Question(models.Model):
 
     def __str__(self):
         return self.title
+    

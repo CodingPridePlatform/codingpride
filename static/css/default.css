@@ -1,0 +1,25 @@
+.btn-primary{
+    background-color: #008080;
+    color: #fff;
+    border-color:#008080
+}
+
+.btn-primary:hover{
+    background-color: #008080;
+    border-color:#fff
+}
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #008080;
+}
+
+
+input:focus, input.form-control:focus {
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: #008080;
+}

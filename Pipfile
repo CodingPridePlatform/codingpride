@@ -10,6 +10,9 @@ django-crispy-forms = "*"
 psycopg2 = "*"
 six = "*"
 pillow = "*"
+django-taggit = "*"
+django-ckeditor = "*"
+django-widget-tweaks = "*"
 
 [dev-packages]
 autopep8 = "*"

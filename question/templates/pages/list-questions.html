@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content%}
+<div class="container">
+  {% for question in questions %} 
+  <div class="row mt-2 mb-1">
+    <div class="col-md-2 mt-5 pt-5">
+
+    </div>
+
+  <div class="col-md-8 border-start border-2 border-end">
+    <div class="row border-top border-bottom border-2 home-qn-section">
+      <div class="col-sm-2 home-counter">
+        <div class="vote-circle rounded-circle"><strong>4</strong></div>
+        <div class="mt-2">
+          <p> Votes</p>
+        </div>
+        <div class="answers-circle rounded-circle mt-3"><strong>4</strong></div>
+        <div class="mt-2">
+          <p> Votes</p>
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <a href="http://">
+          <p>{{ question.title }}</p>
+        </a> <hr>
+        <p class="question-paragraph">{{ question.description|safe|striptags|truncatechars:300 }}</p>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="row qn-cartegories">
+              {% for tag in question.tags.all %}
+              <div class="col-3">
+                <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#{{ tag.name}}</p>
+              </div>
+              {% endfor %}
+            </div>
+            </div>
+            <div class="col-sm-4">
+              <p>Asked {{ question.date_published | timesince }} ago</p>
+              <div class="row">
+                <div class="col-sm-6">
+                 <img src="{% static 'profile_pictures/default.jpg' %}" alt="">
+                </div>
+                <div class="col-sm-6">
+                  <h6><a href="http://">Jaybla</a></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+<div class="bottom-spacer">
+
+</div>
+{% endblock content %}

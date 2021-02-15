@@ -38,6 +38,10 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'crispy_forms',
     'main',
+    'question',
+    'widget_tweaks',
+    'taggit',
+    'ckeditor',
 
     # Django Apps
     'django.contrib.admin',
@@ -119,7 +123,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Dar_es_Salaam'
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -153,4 +158,17 @@ else:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = BASE_DIR / 'sent_mails'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 'auto',
+        'width': '100%',
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline','Blockquote','Image','PageBreak'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+            ['RemoveFormat', 'Source','TextColor','BGColor','Styles','Format','Font','FontSize']
+        ]
+    },
+}

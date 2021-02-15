@@ -4,13 +4,11 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
-from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
-from django.template.loader import get_template
-from django.urls import reverse
-from django.utils.encoding import force_bytes, force_str
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.urls import reverse, reverse_lazy
+from django.utils.encoding import force_str
+from django.utils.http import urlsafe_base64_decode
 from django.views.generic import CreateView, View
 
 from .forms import *
@@ -29,21 +27,8 @@ class UserRegistrationView(CreateView):
         user_email = form.cleaned_data['email']
         user = form.save()
         # send confirmation email
-        token = account_activation_token_generator.make_token(user)
-        user_id = urlsafe_base64_encode(force_bytes(user.id))
-        url = settings.BASE_URL + reverse(
-            'accounts:confirm_email',
-            kwargs={'user_id': user_id, 'token': token})
-        message = get_template(
-            'registration/account_activation_email.html'
-        ).render({'confirm_url': url})
-        mail = EmailMessage(
-            'CodingPride Account Confirmation',
-            message,
-            to=[user_email],
-            from_email=settings.EMAIL_HOST_USER)
-        mail.content_subtype = 'html'
-        mail.send()
+        form.send_confirmation_email(user, user_email)
+
         messages.success(self.request,
                          'Please check your email for confimation.')
         return super().form_valid(form)
@@ -68,7 +53,6 @@ class ConfirmRegistrationView(View):
         return redirect('accounts:login')
 
 
-
 def loginView(request, *args, **kwargs):
     form = UserLoginForm()
     if request.method == 'POST':
@@ -79,9 +63,10 @@ def loginView(request, *args, **kwargs):
             return HttpResponseRedirect('/')
     myTemplate = 'registration/login.html'
     context = {
-        'form':form
+        'form': form
     }
     return render(request, myTemplate, context)
+
 
 @login_required
 def change_password(request):
@@ -90,7 +75,8 @@ def change_password(request):
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated!')
+            messages.success(
+                request, 'Your password was successfully updated!')
             return redirect('accounts:change_password')
         else:
             messages.error(request, 'Please correct the error below.')
@@ -118,12 +104,12 @@ def profile(request):
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
-
     context = {
         'u_form': u_form,
         'p_form': p_form
     }
     return render(request, 'registration/profile.html', context)
+
 
 @login_required
 def logout_view(request):

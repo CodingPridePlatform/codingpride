@@ -5,3 +5,8 @@ from django.shortcuts import render
 def home(request):
     myTemplate = 'home.html'
     return render(request, myTemplate, {})
+
+
+    
+    
+    

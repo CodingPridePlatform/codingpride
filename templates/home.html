@@ -3,187 +3,334 @@
 
 {% block content %}
 
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block sidebar collapse">
-      <div class="sidebar-sticky nav-pills">
-        <ul class="nav flex-column">
-          <li class="nav-item mb-1 custom-border-right">
-            <a class="nav-link active" href="#">Home</a>
-          </li>
-          <li class="nav-item mb-1">
-            <a class="nav-link" href="#">Tags</a>
-          </li>
-          <li class="nav-item mb-1">
-            <a class="nav-link" href="#">Jobs</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <main role="main" class="col-md-7 ml-sm-auto col-lg-7 content-center-div border-start border-2 border-end">
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-2 left-sidebar">
+      <ul class="nav flex-column nav-pills">
+        <li class="nav-item mb-1 rounded-end">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link" href="#">Tags</a>
+        </li>
+        <li class="nav-item mb-1">
+          <a class="nav-link" href="#">Jobs</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-7 col-sm-12">
       <div class="input-group mb-3 search-bar">
-        <input type="text" class="form-control  border-2 border-secondary rounded-3" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"  aria-describedby="button-addon2">
+        <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="&#xF002; Search" />
       </div>
-      <div class="row">
-        <div class="col-8">
-          <h3 style="margin-left: 3%;">All Questions</h3>         
+      <div class="row my-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <h3>All Questions</h3>
+          <a href="" class="btn btn-primary">
+            Ask Question
+          </a>
         </div>
+      </div>
+      <div class="row my-3">
         <div class="col-md-4">
-          <a href="{% url 'question:qn-create' %}"><button type="button" class="btn btn-primary mb-3">Ask Question</button></a>
+          <p>87409 Questions</p>
+        </div>
+        <div class="col-md-8 text-lg-end col-sm-12">
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-secondary">Newest</button>
+            <button type="button" class="btn btn-outline-secondary">Top</button>
+            <button type="button" class="btn btn-outline-secondary">Right</button>
+            <button type="button" class="btn btn-outline-secondary">Views</button>
+            <button type="button" class="btn btn-outline-secondary">Oldest</button>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-4">
-          <p style="margin-left: 3%;">87409 Questions</p>         
-        </div>
-        <div class="col-8 updates-bar">
-          <ul>
-            <li><button type="button" class="btn btn-outline-secondary rounded-end">Newest</button></li>
-            <li><button type="button" class="btn btn-outline-secondary">Top</button></li>
-            <li><button type="button" class="btn btn-outline-secondary">Views</button></li>
-            <li><button type="button" class="btn btn-outline-secondary rounded-start">Oldest</button></li>
-          </ul>
-        </div>
-      </div>
-      <div class="row mt-2 border-top border-bottom border-2 home-qn-section">
-        <div class="col-2 home-counter">       
-          <div class="vote-circle rounded-circle"><strong>4</strong></div>
-          <div class="mt-2"><p> Votes</p></div>
-          <div class="answers-circle rounded-circle mt-3"><strong>4</strong></div>
-          <div class="mt-2"><p> Answers</p></div>
-        </div>        
-        <div class="col-10">
-          <a href="#"><p>How to build 3D cube that is 50% transparent. and a small circle inside it?</p></a>
-          <p class="question-paragraph">I have a code in that I am able to develop 3D cube that can be rotated by swiping. My requirement is : I want to build 3d cube.....</p>
-          <div class="row">
-            <div class="col-8">
-              <div class="row qn-cartegories">
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Django</p>
-                </div>
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Python</p>
-                </div>
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Angular</p>
-                </div>
-              </div>
+      <div class="card py-3 px-1 my-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-2 text-center">
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Votes</p>
             </div>
-            <div class="col-4">
-              <p>asked 1 min ago</p>              
-              <div class="row">
-                <div class="col-6">
-                  <img src="{% static 'profile_pictures/default.jpg' %}" alt="">
-                </div>
-                <div class="col-6">
-                  <h6><a href="http://">Jaybla</a></h6>
-                </div>
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Answers</p>
+            </div>
+          </div>
+          <div class="col-10">
+            <a href="">
+              <h4>
+                How to build 3D cube that is 50% transparent. and a small circle inside it?
+              </h4>
+            </a>
+            <p class="question-paragraph">
+              I have a code in that I am able to develop 3D cube that can be rotated byswiping. My requirement is :
+              I
+              want to build 3d cube with all side walls with one color and top and bottom with one
+              color and...
+            </p>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="" class="tag">
+                  Django
+                </a>
+                <a href="" class="tag">
+                  Python
+                </a>
+                <a href="" class="tag">
+                  Angular
+                </a>
+                <a href="" class="tag">
+                  Angular
+                </a>
+                <a href="" class="tag">
+                  Angular
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-2 border-top border-bottom border-2 home-qn-section">
-        <div class="col-2 home-counter">       
-          <div class="vote-circle rounded-circle"><strong>4</strong></div>
-          <div class="mt-2"><p> Votes</p></div>
-          <div class="answers-circle rounded-circle mt-3"><strong>4</strong></div>
-          <div class="mt-2"><p> Answers</p></div>
-        </div>        
-        <div class="col-10">
-          <a href="#"><p>How to build 3D cube that is 50% transparent. and a small circle inside it?</p></a>
-          <p class="question-paragraph">I have a code in that I am able to develop 3D cube that can be rotated by swiping. My requirement is : I want to build 3d cube.....</p>
-          <div class="row">
-            <div class="col-8">
-              <div class="row qn-cartegories">
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Django</p>
-                </div>
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Python</p>
-                </div>
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Angular</p>
-                </div>
-              </div>
+      <div class="card py-3 px-1 mt-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-2 text-center">
+            <div class="counter"><strong>48987</strong></div>
+            <div class="mt-2">
+              <p>Votes</p>
             </div>
-            <div class="col-4">
-              <p>asked 1 min ago</p>              
-              <div class="row">
-                <div class="col-6">
-                  <img src="{% static 'profile_pictures/default.jpg' %}" alt="">
-                </div>
-                <div class="col-6">
-                  <h6><a href="http://">Jaybla</a></h6>
-                </div>
+            <div class="counter"><strong>48987</strong></div>
+            <div class="mt-2">
+              <p>Answers</p>
+            </div>
+          </div>
+          <div class="col-10">
+            <a href="">
+              <h4>
+                How to build 3D cube that is 50% transparent. and a small circle inside it?
+              </h4>
+            </a>
+            <p class="question-paragraph">
+              I have a code in that I am able to develop 3D cube that can be rotated byswiping. My requirement is :
+              I
+              want to build 3d cube with all side walls with one color and top and bottom with one
+              color and...
+            </p>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="" class="tag">
+                  Django
+                </a>
+                <a href="" class="tag">
+                  Python
+                </a>
+                <a href="" class="tag">
+                  Angular
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-2 border-top border-bottom border-2 home-qn-section">
-        <div class="col-2 home-counter">       
-          <div class="vote-circle rounded-circle"><strong>4</strong></div>
-          <div class="mt-2"><p> Votes</p></div>
-          <div class="answers-circle rounded-circle mt-3"><strong>4</strong></div>
-          <div class="mt-2"><p> Answers</p></div>
-        </div>        
-        <div class="col-10">
-          <a href="#"><p>How to build 3D cube that is 50% transparent. and a small circle inside it?</p></a>
-          <p class="question-paragraph">I have a code in that I am able to develop 3D cube that can be rotated by swiping. My requirement is : I want to build 3d cube.....</p>
-          <div class="row">
-            <div class="col-8">
-              <div class="row qn-cartegories">
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Django</p>
-                </div>
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Python</p>
-                </div>
-                <div class="col-3">
-                  <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#Angular</p>
-                </div>
-              </div>
+      <div class="card py-3 px-1 mt-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-2 text-center">
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Votes</p>
             </div>
-            <div class="col-4">
-              <p>asked 1 min ago</p>              
-              <div class="row">
-                <div class="col-6">
-                  <img src="{% static 'profile_pictures/default.jpg' %}" alt="">
-                </div>
-                <div class="col-6">
-                  <h6><a href="http://">Jaybla</a></h6>
-                </div>
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Answers</p>
+            </div>
+          </div>
+          <div class="col-10">
+            <a href="">
+              <h4>
+                How to build 3D cube that is 50% transparent. and a small circle inside it?
+              </h4>
+            </a>
+            <p class="question-paragraph">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto architecto, animi commodi consequuntur
+              dolorum quidem delectus unde dignissimos suscipit tempora molestiae autem natus repellendus, obcaecati
+              ad laborum nemo incidunt doloribus?
+            </p>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="" class="tag">
+                  Django
+                </a>
+                <a href="" class="tag">
+                  Python
+                </a>
+                <a href="" class="tag">
+                  Angular
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="card py-3 px-1 mt-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-2 text-center">
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Votes</p>
+            </div>
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Answers</p>
+            </div>
+          </div>
+          <div class="col-10">
+            <a href="">
+              <h4>
+                How to build 3D cube that is 50% transparent. and a small circle inside it?
+              </h4>
+            </a>
+            <p class="question-paragraph">
+              I have a code in that I am able to develop 3D cube that can be rotated byswiping. My requirement is :
+              I
+              want to build 3d cube with all side walls with one color and top and bottom with one
+              color and...
+            </p>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="" class="tag">
+                  Django
+                </a>
+                <a href="" class="tag">
+                  Python
+                </a>
+                <a href="" class="tag">
+                  Angular
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card py-3 px-1 mt-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-2 text-center">
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Votes</p>
+            </div>
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Answers</p>
+            </div>
+          </div>
+          <div class="col-10">
+            <a href="">
+              <h4>
+                How to build 3D cube that is 50% transparent. and a small circle inside it?
+              </h4>
+            </a>
+            <p class="question-paragraph">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, qui! Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Eveniet? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
+              quod molestiae repudiandae. Aliquam omnis molestias minima vel enim labore sed asperiores, sunt
+              dignissimos pariatur earum, ut nesciunt repellat accusamus dolores ratione ipsam maiores rem libero
+              quasi quod! Culpa quasi explicabo magnam atque ipsam unde debitis itaque! Itaque, asperiores magnam
+              illum animi ab fuga corporis cum. Tenetur quos dolore laboriosam. Saepe, laudantium? Atque vel, ipsa
+              nostrum mollitia maxime assumenda ipsum minus?
+            </p>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="" class="tag">
+                  Django
+                </a>
+                <a href="" class="tag">
+                  Python
+                </a>
+                <a href="" class="tag">
+                  Angular
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card py-3 px-1 mt-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-2 text-center">
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Votes</p>
+            </div>
+            <div class="counter"><strong>4</strong></div>
+            <div class="mt-2">
+              <p>Answers</p>
+            </div>
+          </div>
+          <div class="col-10">
+            <a href="">
+              <h4>
+                How to build 3D cube that is 50% transparent. and a small circle inside it?
+              </h4>
+            </a>
+            <p class="question-paragraph">
+              I have a code in that I am able to develop 3D cube that can be rotated byswiping. My requirement is :
+              I
+              want to build 3d cube with all side walls with one color and top and bottom with one
+              color and...
+            </p>
+            <div class="row">
+              <div class="col-md-12">
+                <a href="" class="tag">
+                  Django
+                </a>
+                <a href="" class="tag">
+                  Python
+                </a>
+                <a href="" class="tag">
+                  Angular
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    </main>
-    <div class="col-md-3 col-lg-3 content-right-div">
+    <div class="col-md-3">
       <div class="logged-user">
         <h3>Logged In User</h3>
       </div>
 
-      <div class="card rounded-top rounded-3 mb-5" style="width: 18rem;margin-left: 3%;">
-        <img src="{% static 'profile_pictures/default.jpg'%}" class="card-img-top" alt="...">
-        <div class="card-body" style="text-align: center;">
+      <div class="card rounded-top rounded-3 mb-5">
+        <img src="../static/profile_pictures/default.jpg" class="card-img-top" alt="User Profile Picture">
+        <div class="card-body text-center">
           <h5 class="card-title">Username</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.
+          </p>
           <a href="#" class="btn btn-primary">Change Password</a>
         </div>
       </div>
       <h4>Hot Network Questions</h4>
-      <div class="hot-questions-section" style="display: inline-block;">
-        <p><a href="http://">Is it wrong to demand features in open-source projects?</a></p>
-        <p><a href="http://">Is it wrong to demand features in open-source projects?</a></p>
-        <p><a href="http://">Is it wrong to demand features in open-source projects?</a></p>
-        <p><a href="http://">Is it wrong to demand features in open-source projects?</a></p>
-        <p><a href="http://">Is it wrong to demand features in open-source projects?</a></p>
-        <p><a href="http://">Is it wrong to demand features in open-source projects?</a></p>
-        <p><a href="http://">Is it wrong to demand features in open-source projects?</a></p>
+      <div class="hot-questions-section my-4">
+        <a href="">
+          <p>
+            Is it wrong to demand features in open-source
+          </p>
+        </a>
+        <a href="">
+          <p>
+            Is it wrong to demand features in open-source
+          </p>
+        </a>
+        <a href="">
+          <p>
+            Is it wrong to demand features in open-source
+          </p>
+        </a>
+        <a href="">
+          <p>
+            Is it wrong to demand features in open-source
+          </p>
+        </a>
       </div>
     </div>
   </div>

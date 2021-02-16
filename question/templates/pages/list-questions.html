@@ -3,7 +3,7 @@
 {% load humanize %}
 {% block content%}
 <div class="container">
-  {% for question in questions %} 
+  {% for question in questions %}
   <div class="row mt-2 mb-1">
     <div class="col-md-2 mt-5 pt-5">
 
@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="col-sm-10">
-        <a href="http://">
+        <a href="{% url 'question:question-detail' question.id %}">
           <p>{{ question.title }}</p>
         </a> <hr>
         <p class="question-paragraph">{{ question.description|safe|striptags|truncatechars:300 }}</p>

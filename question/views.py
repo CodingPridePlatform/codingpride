@@ -1,13 +1,16 @@
 from django.shortcuts import render
+from django.views.generic import DetailView
+
 from .forms import QuestionCreateForm
 from .models import *
+
 
 # Create your views here.
 def question(request):
     myTemplate = "pages/question-create.html"
     context = {}
     form = QuestionCreateForm(request.POST or None,)
-    
+
     if form.is_valid():
         form.save()
         context['success_message'] = "Your Question Has Been Submitted Successfully"
@@ -23,3 +26,7 @@ def list_questions(request):
         'questions': all_questions,
     }
     return render(request, myTemplate, context)
+
+
+class QuestionDetailView(DetailView):
+    model = Question

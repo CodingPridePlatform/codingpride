@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row py-4">
+    <h2>{{ object.title }}</h2>
+    <p>{{ object.date_published | naturaltime }}</p>
+    {% for tag in object.tags.all %}
+    <div class="col-3">
+      <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#{{ tag.name }}</p>
+    </div>
+    {% endfor %}
+    <hr>
+    <p>{{ object.description | safe | linebreaks }}</p>
+
+  </div>
+</div>
+{% endblock content %}class

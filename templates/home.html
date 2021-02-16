@@ -2,11 +2,10 @@
 {% load static %}
 
 {% block content %}
-
 <div class="container">
-  <div class="row my-5">
-    <div class="col-md-2 left-sidebar">
-      <ul class="nav flex-column nav-pills">
+  <div class="row my-4">
+    <div id="sideBarNav" class="col-md-2 d-md-block bg-light left-sidebar collapse border-end">
+      <ul class="nav flex-column nav-pills sidebar_sticky">
         <li class="nav-item mb-1 rounded-end">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
@@ -18,23 +17,21 @@
         </li>
       </ul>
     </div>
-    <div class="col-md-7 col-sm-12">
+    <div class="col-md-7 offset-md-2">
       <div class="input-group mb-3 search-bar">
-        <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="&#xF002; Search" />
+        <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"/>
       </div>
       <div class="row my-4">
-        <div class="d-flex justify-content-between align-items-center">
-          <h3>All Questions</h3>
-          <a href="" class="btn btn-primary">
-            Ask Question
-          </a>
-        </div>
+        <div class="col-6"><h3>All Questions</h3></div>
+        <div class="col-6 d-flex justify-content-end"><button href="" class="btn btn-primary">
+          Ask Question
+        </button></div>       
       </div>
       <div class="row my-3">
         <div class="col-md-4">
           <p>87409 Questions</p>
         </div>
-        <div class="col-md-8 text-lg-end col-sm-12">
+        <div class="col-md-8 text-lg-end col-sm-12 text-sm-center">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <button type="button" class="btn btn-outline-secondary">Newest</button>
             <button type="button" class="btn btn-outline-secondary">Top</button>
@@ -47,11 +44,11 @@
       <div class="card py-3 px-1 my-3">
         <div class="row d-flex align-items-center">
           <div class="col-2 text-center">
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
+            <div><strong>4</strong></div>
+            <div>
               <p>Votes</p>
             </div>
-            <div class="counter"><strong>4</strong></div>
+            <div><strong>4</strong></div>
             <div class="mt-2">
               <p>Answers</p>
             </div>
@@ -69,229 +66,17 @@
               color and...
             </p>
             <div class="row">
-              <div class="col-md-12">
-                <a href="" class="tag">
-                  Django
-                </a>
-                <a href="" class="tag">
-                  Python
-                </a>
-                <a href="" class="tag">
-                  Angular
-                </a>
-                <a href="" class="tag">
-                  Angular
-                </a>
-                <a href="" class="tag">
-                  Angular
-                </a>
+              <div class="col-md-12 d-inline-flex">
+                <h5><span class="badge bg-primary me-2">Python</span></h5>                
+                <h5><span class="badge bg-secondary me-2">Django</span></h5>
+                <h5><span class="badge bg-success me-2">Angular</span></h5>
+                <h5><span class="badge bg-info">React</span></h5>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="card py-3 px-1 mt-3">
-        <div class="row d-flex align-items-center">
-          <div class="col-2 text-center">
-            <div class="counter"><strong>48987</strong></div>
-            <div class="mt-2">
-              <p>Votes</p>
-            </div>
-            <div class="counter"><strong>48987</strong></div>
-            <div class="mt-2">
-              <p>Answers</p>
-            </div>
-          </div>
-          <div class="col-10">
-            <a href="">
-              <h4>
-                How to build 3D cube that is 50% transparent. and a small circle inside it?
-              </h4>
-            </a>
-            <p class="question-paragraph">
-              I have a code in that I am able to develop 3D cube that can be rotated byswiping. My requirement is :
-              I
-              want to build 3d cube with all side walls with one color and top and bottom with one
-              color and...
-            </p>
-            <div class="row">
-              <div class="col-md-12">
-                <a href="" class="tag">
-                  Django
-                </a>
-                <a href="" class="tag">
-                  Python
-                </a>
-                <a href="" class="tag">
-                  Angular
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card py-3 px-1 mt-3">
-        <div class="row d-flex align-items-center">
-          <div class="col-2 text-center">
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Votes</p>
-            </div>
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Answers</p>
-            </div>
-          </div>
-          <div class="col-10">
-            <a href="">
-              <h4>
-                How to build 3D cube that is 50% transparent. and a small circle inside it?
-              </h4>
-            </a>
-            <p class="question-paragraph">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto architecto, animi commodi consequuntur
-              dolorum quidem delectus unde dignissimos suscipit tempora molestiae autem natus repellendus, obcaecati
-              ad laborum nemo incidunt doloribus?
-            </p>
-            <div class="row">
-              <div class="col-md-12">
-                <a href="" class="tag">
-                  Django
-                </a>
-                <a href="" class="tag">
-                  Python
-                </a>
-                <a href="" class="tag">
-                  Angular
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card py-3 px-1 mt-3">
-        <div class="row d-flex align-items-center">
-          <div class="col-2 text-center">
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Votes</p>
-            </div>
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Answers</p>
-            </div>
-          </div>
-          <div class="col-10">
-            <a href="">
-              <h4>
-                How to build 3D cube that is 50% transparent. and a small circle inside it?
-              </h4>
-            </a>
-            <p class="question-paragraph">
-              I have a code in that I am able to develop 3D cube that can be rotated byswiping. My requirement is :
-              I
-              want to build 3d cube with all side walls with one color and top and bottom with one
-              color and...
-            </p>
-            <div class="row">
-              <div class="col-md-12">
-                <a href="" class="tag">
-                  Django
-                </a>
-                <a href="" class="tag">
-                  Python
-                </a>
-                <a href="" class="tag">
-                  Angular
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card py-3 px-1 mt-3">
-        <div class="row d-flex align-items-center">
-          <div class="col-2 text-center">
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Votes</p>
-            </div>
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Answers</p>
-            </div>
-          </div>
-          <div class="col-10">
-            <a href="">
-              <h4>
-                How to build 3D cube that is 50% transparent. and a small circle inside it?
-              </h4>
-            </a>
-            <p class="question-paragraph">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe, qui! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Eveniet? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet
-              quod molestiae repudiandae. Aliquam omnis molestias minima vel enim labore sed asperiores, sunt
-              dignissimos pariatur earum, ut nesciunt repellat accusamus dolores ratione ipsam maiores rem libero
-              quasi quod! Culpa quasi explicabo magnam atque ipsam unde debitis itaque! Itaque, asperiores magnam
-              illum animi ab fuga corporis cum. Tenetur quos dolore laboriosam. Saepe, laudantium? Atque vel, ipsa
-              nostrum mollitia maxime assumenda ipsum minus?
-            </p>
-            <div class="row">
-              <div class="col-md-12">
-                <a href="" class="tag">
-                  Django
-                </a>
-                <a href="" class="tag">
-                  Python
-                </a>
-                <a href="" class="tag">
-                  Angular
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="card py-3 px-1 mt-3">
-        <div class="row d-flex align-items-center">
-          <div class="col-2 text-center">
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Votes</p>
-            </div>
-            <div class="counter"><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Answers</p>
-            </div>
-          </div>
-          <div class="col-10">
-            <a href="">
-              <h4>
-                How to build 3D cube that is 50% transparent. and a small circle inside it?
-              </h4>
-            </a>
-            <p class="question-paragraph">
-              I have a code in that I am able to develop 3D cube that can be rotated byswiping. My requirement is :
-              I
-              want to build 3d cube with all side walls with one color and top and bottom with one
-              color and...
-            </p>
-            <div class="row">
-              <div class="col-md-12">
-                <a href="" class="tag">
-                  Django
-                </a>
-                <a href="" class="tag">
-                  Python
-                </a>
-                <a href="" class="tag">
-                  Angular
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
 
     <div class="col-md-3">
@@ -337,6 +122,3 @@
 </div>
 {% endblock %}
 
-{% block javascript %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-{% endblock javascript %}

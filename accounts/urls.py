@@ -7,10 +7,10 @@ from django.contrib.auth import views as auth_views
 app_name = 'accounts'
 
 urlpatterns = [
-    path('register/', views.UserRegistrationView.as_view(),
-         name='accounts-register'),
+    path('signup/', views.UserRegistrationView.as_view(),
+         name='accounts_register'),
      path('login/',
-         views.loginView, name='login'),
+         views.loginView.as_view(), name='login'),
     path('confirm-email/<str:user_id>/<str:token>/',
          views.ConfirmRegistrationView.as_view(), name='confirm_email'), 
 

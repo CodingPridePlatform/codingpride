@@ -23,3 +23,11 @@ input:focus, input.form-control:focus {
     -webkit-box-shadow: none;
     border-color: #008080;
 }
+
+.border-primary{
+    border-color: #008080 !important;
+}
+
+.bg-coding {
+    background-color: #008080!important;
+}

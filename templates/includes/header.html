@@ -1,4 +1,6 @@
-   {% load static %} 
+   {% load static %}
+   {% load widget_tweaks %}
+
    <header class="sticky-top shadow-sm">
     <nav class="navbar navbar-expand-lg navbar-light border-top border-2 border-primary" style="background-color: #fff;">
       <div class="container">
@@ -28,12 +30,23 @@
         </div>
         <div class="justify-content-end d-flex nav-item">
           <a href="" class="btn nav-link me-2 btn-secondary btn-sm">Login</a>
-          <a href="" class="btn nav-link btn-primary btn-sm">Signup</a>
+
+          <button id="login-btn" data-bs-toggle="modal" class="btn btn-secondary" type="button" name="button">Login</button>
+
+          <button id="signup-btn" data-bs-toggle="modal" class="btn btn-primary" type="button" name="button">Sign up</button>
         </div>
       </div>
     </nav>
   </header>
 
+  <!-- modal -->
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+  
+ 
     
     
     

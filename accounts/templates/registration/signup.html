@@ -1,25 +1,38 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load crispy_forms_tags %}
+{% load widget_tweaks %}
 
-{% block stylesheet %}
-<style>
-  footer{
-    display:none;
-  }
-</style>
-{% endblock stylesheet %}
+<form method="post" action="">
+  {% csrf_token %}
 
-{% block content %}
-<div class="container py-5">
-  <form method="POST" class="col-md-6 offset-md-3 card login-form">
-    {% csrf_token %}
-    <div class="card-body">
-      <h2 class="mb-5 text-center">Sign Up</h2>
+  <div class="modal-header bg-coding text-light">
+    <h3 class="modal-title">Sign up</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
 
-      {% include 'includes/form_floating.html' with form=form %}
-     <button class="btn" style="background-color: #009999; color: #fff;">Sign Up</button>
+  <div class="modal-body">
+
+    <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
     </div>
-  </form>
-</div>
-{% endblock content %}
+
+    {% for field in form %}
+      <div class="form-group">
+        <div class="form-floating mb-3">
+        {% render_field field class="form-control" placeholder=field.label %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        </div>
+        <div class="{% if field.errors %} invalid{% endif %}">
+          {% for error in field.errors %}
+            <p class="help-block">{{ error }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="submit-btn btn btn-primary">Sign up</button>
+  </div>
+
+</form>

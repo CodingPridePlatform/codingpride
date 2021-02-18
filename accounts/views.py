@@ -17,10 +17,14 @@ from .tokens import account_activation_token_generator
 
 User = get_user_model()
 
+from django.urls import reverse_lazy
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalLoginView
 
-class UserRegistrationView(CreateView):
-    form_class = UserCreationForm
+
+class UserRegistrationView(BSModalCreateView):
+    form_class = CustomUserCreationForm
     template_name = 'registration/signup.html'
+    success_message = 'Success: Sign up succeeded. You can now Log in.'
     success_url = reverse_lazy('accounts:login')
 
     def form_valid(self, form):
@@ -53,19 +57,26 @@ class ConfirmRegistrationView(View):
         return redirect('accounts:login')
 
 
-def loginView(request, *args, **kwargs):
-    form = UserLoginForm()
-    if request.method == 'POST':
-        form = UserLoginForm(request.POST or None)
-        if form.is_valid():
-            user_obj = form.cleaned_data.get('user_obj')
-            login(request, user_obj)
-            return HttpResponseRedirect('/')
-    myTemplate = 'registration/login.html'
-    context = {
-        'form': form
-    }
-    return render(request, myTemplate, context)
+# def loginView(request, *args, **kwargs):
+#     form = UserLoginForm()
+#     if request.method == 'POST':
+#         form = UserLoginForm(request.POST or None)
+#         if form.is_valid():
+#             user_obj = form.cleaned_data.get('user_obj')
+#             login(request, user_obj)
+#             return HttpResponseRedirect('/')
+#     myTemplate = 'registration/login.html'
+#     context = {
+#         'form': form
+#     }
+#     return render(request, myTemplate, context)
+
+
+class loginView(BSModalLoginView):
+    authentication_form = UserLoginForm
+    template_name = 'registration/login.html'
+    success_message = 'Success: You were successfully logged in.'
+    extra_context = dict(success_url=reverse_lazy('/'))
 
 
 @login_required

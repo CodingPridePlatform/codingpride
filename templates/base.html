@@ -19,7 +19,18 @@
   <body>
     {% include 'includes/header.html' %}
 
-    {% block content %} {% endblock %}
+    <div class="container">
+      <div class="row my-4">
+        {% include 'includes/left_sidebar.html' %}
+
+        <div class="col-md-7 offset-md-2">
+          {% block content %}{% endblock %}
+        </div>
+        {% include 'includes/right_sidebar.html' %}
+      </div>
+    </div>
+
+    
   
     {% include 'includes/footer.html' %}
   

@@ -1,124 +1,64 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
-<div class="container">
+  <div class="input-group mb-3 search-bar">
+    <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"/>
+  </div>
   <div class="row my-4">
-    <div id="sideBarNav" class="col-md-2 d-md-block bg-light left-sidebar collapse border-end">
-      <ul class="nav flex-column nav-pills sidebar_sticky">
-        <li class="nav-item mb-1 rounded-end">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item mb-1">
-          <a class="nav-link" href="#">Tags</a>
-        </li>
-        <li class="nav-item mb-1">
-          <a class="nav-link" href="#">Jobs</a>
-        </li>
-      </ul>
+    <div class="col-6"><h3>All Questions</h3></div>
+    <div class="col-6 d-flex justify-content-end"><button href="" class="btn btn-primary">
+      Ask Question
+    </button></div>       
+  </div>
+  <div class="row my-3">
+    <div class="col-md-4">
+      <p>87409 Questions</p>
     </div>
-    <div class="col-md-7 offset-md-2">
-      <div class="input-group mb-3 search-bar">
-        <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"/>
-      </div>
-      <div class="row my-4">
-        <div class="col-6"><h3>All Questions</h3></div>
-        <div class="col-6 d-flex justify-content-end"><button href="" class="btn btn-primary">
-          Ask Question
-        </button></div>       
-      </div>
-      <div class="row my-3">
-        <div class="col-md-4">
-          <p>87409 Questions</p>
-        </div>
-        <div class="col-md-8 text-lg-end col-sm-12 text-sm-center">
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-outline-secondary">Newest</button>
-            <button type="button" class="btn btn-outline-secondary">Top</button>
-            <button type="button" class="btn btn-outline-secondary">Right</button>
-            <button type="button" class="btn btn-outline-secondary">Views</button>
-            <button type="button" class="btn btn-outline-secondary">Oldest</button>
-          </div>
-        </div>
-      </div>
-      <div class="card py-3 px-1 my-3">
-        <div class="row d-flex align-items-center">
-          <div class="col-2 text-center">
-            <div><strong>4</strong></div>
-            <div>
-              <p>Votes</p>
-            </div>
-            <div><strong>4</strong></div>
-            <div class="mt-2">
-              <p>Answers</p>
-            </div>
-          </div>
-          <div class="col-10">
-            <a href="">
-              <h4>
-                How to build 3D cube that is 50% transparent. and a small circle inside it?
-              </h4>
-            </a>
-            <p class="question-paragraph">
-              I have a code in that I am able to develop 3D cube that can be rotated byswiping. My requirement is :
-              I
-              want to build 3d cube with all side walls with one color and top and bottom with one
-              color and...
-            </p>
-            <div class="row">
-              <div class="col-md-12 d-inline-flex">
-                <h5><span class="badge bg-primary me-2">Python</span></h5>                
-                <h5><span class="badge bg-secondary me-2">Django</span></h5>
-                <h5><span class="badge bg-success me-2">Angular</span></h5>
-                <h5><span class="badge bg-info">React</span></h5>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="col-md-3">
-      <div class="logged-user">
-        <h3>Logged In User</h3>
-      </div>
-
-      <div class="card rounded-top rounded-3 mb-5">
-        <img src="../static/profile_pictures/default.jpg" class="card-img-top" alt="User Profile Picture">
-        <div class="card-body text-center">
-          <h5 class="card-title">Username</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.
-          </p>
-          <a href="#" class="btn btn-primary">Change Password</a>
-        </div>
-      </div>
-      <h4>Hot Network Questions</h4>
-      <div class="hot-questions-section my-4">
-        <a href="">
-          <p>
-            Is it wrong to demand features in open-source
-          </p>
-        </a>
-        <a href="">
-          <p>
-            Is it wrong to demand features in open-source
-          </p>
-        </a>
-        <a href="">
-          <p>
-            Is it wrong to demand features in open-source
-          </p>
-        </a>
-        <a href="">
-          <p>
-            Is it wrong to demand features in open-source
-          </p>
-        </a>
+    <div class="col-md-8 text-lg-end col-sm-12 text-sm-center">
+      <div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button type="button" class="btn btn-outline-secondary">Newest</button>
+        <button type="button" class="btn btn-outline-secondary">Top</button>
+        <button type="button" class="btn btn-outline-secondary">Right</button>
+        <button type="button" class="btn btn-outline-secondary">Views</button>
+        <button type="button" class="btn btn-outline-secondary">Oldest</button>
       </div>
     </div>
   </div>
-</div>
+  <div class="card py-3 px-1 my-3">
+    {% for question in questions %}
+    <div class="row d-flex align-items-center">
+      <div class="col-2 text-center">
+        <div><strong>4</strong></div>
+        <div>
+          <p>Votes</p>
+        </div>
+        <div><strong>4</strong></div>
+        <div class="mt-2">
+          <p>Answers</p>
+        </div>
+      </div>
+      <div class="col-10">
+        <a href="{% url 'question:question-detail' question.id %}">
+          <h4>
+            {{question.title}}
+          </h4>
+        </a>
+        <p class="question-paragraph">
+          {{ question.description|safe|striptags|truncatechars:300 }}
+        </p>
+        <div class="row">
+          <div class="col-md-12 d-inline-flex">
+            {% for tag in question.tags.all %}
+            <h5><span class="badge bg-primary me-2">{{ tag.name}}</span></h5>                
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
 {% endblock %}
 

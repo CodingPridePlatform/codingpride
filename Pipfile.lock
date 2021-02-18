@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "04fef59b63767dcb687f88966777f3889571f214b102b37635caf57ab78367ac"
+            "sha256": "46f0c3a94bbaeb7c24fa50c5eee77568532ec595f139e4d7486b150ba1ae33b5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -31,6 +31,13 @@
             ],
             "index": "pypi",
             "version": "==3.1.6"
+        },
+        "django-bootstrap-modal-forms": {
+            "hashes": [
+                "sha256:efb26223d64143edb1af6b8156c8a4a708d6341f54108a7bece612db02edaf86"
+            ],
+            "index": "pypi",
+            "version": "==2.0.1"
         },
         "django-ckeditor": {
             "hashes": [

@@ -27,3 +27,7 @@ input:focus, input.form-control:focus {
 .border-primary{
     border-color: #008080 !important;
 }
+
+.bg-coding {
+    background-color: #008080!important;
+}

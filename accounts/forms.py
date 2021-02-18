@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserCreationForm
+from django.contrib.auth.forms import ReadOnlyPasswordHashField, AuthenticationForm
 from django.core.mail import EmailMessage
 from django.db.models import Q
 from django.template.loader import get_template
@@ -9,10 +9,16 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 
+
 from .models import *
 from .tokens import account_activation_token_generator
 
 User = get_user_model()
+
+
+from bootstrap_modal_forms.mixins import PopRequestMixin, CreateUpdateAjaxMixin
+
+
 
 
 class UserCreationForm(forms.ModelForm):
@@ -62,6 +68,14 @@ class UserCreationForm(forms.ModelForm):
         mail.send()
 
 
+class CustomUserCreationForm(PopRequestMixin, CreateUpdateAjaxMixin,UserCreationForm):
+    
+    class Meta:
+        model = User
+        fields = ['email','password1', 'password2']
+
+
+
 class UserChangeForm(forms.ModelForm):
     """A form for updating users. Includes all the fields on
     the user, but replaces the password field with admin's
@@ -80,24 +94,31 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
+class UserLoginForm(AuthenticationForm):
 
-class UserLoginForm(forms.Form):
-    query = forms.CharField(label = 'Email')
-    password = forms.CharField(label = 'Password', widget = forms.PasswordInput)
+    class Meta:
+        model = User
+        fields = ['email', 'password']
 
-    def clean(self, *args, **kwargs):
-        query = self.cleaned_data.get('query')
-        password = self.cleaned_data.get('password')
-        user_qs_final = User.objects.filter(
-            Q(email__iexact=query)
-        ).distinct()
-        if not user_qs_final.exists() and user_qs_final.count != 1:
-            raise forms.ValidationError("Invalid Credentials provided!")
-        user_obj = user_qs_final.first()
-        if not user_obj.check_password(password):
-            raise forms.ValidationError("Credentials are not correct!")
-        self.cleaned_data["user_obj"] = user_obj
-        return super(UserLoginForm, self).clean(*args, **kwargs)
+
+
+# class UserLoginForm(forms.Form):
+#     query = forms.CharField(label = 'Email')
+#     password = forms.CharField(label = 'Password', widget = forms.PasswordInput)
+
+#     def clean(self, *args, **kwargs):
+#         query = self.cleaned_data.get('query')
+#         password = self.cleaned_data.get('password')
+#         user_qs_final = User.objects.filter(
+#             Q(email__iexact=query)
+#         ).distinct()
+#         if not user_qs_final.exists() and user_qs_final.count != 1:
+#             raise forms.ValidationError("Invalid Credentials provided!")
+#         user_obj = user_qs_final.first()
+#         if not user_obj.check_password(password):
+#             raise forms.ValidationError("Credentials are not correct!")
+#         self.cleaned_data["user_obj"] = user_obj
+#         return super(UserLoginForm, self).clean(*args, **kwargs)
 
 class UserUpdateForm(forms.ModelForm):
     class Meta:

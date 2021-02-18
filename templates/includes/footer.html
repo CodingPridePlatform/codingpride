@@ -1,6 +1,6 @@
 {% load static %}
    <!--    footer -->
-   <footer class="bg-secondary text-light py-4">
+   <footer class="bg-secondary text-light py-4 fixed-bottom">
     <div class="container">
       <div class="d-flex align-items-center justify-content-between">
         <p class="copyright">
@@ -10,18 +10,21 @@
         </p>
         <div class="social-links">
           <a href="#">
-            <i class="fab fa-github-square fa-2x"></i>
+            <i class="fa fa-github-square fa-2x  text-light"></i>
           </a>
           <a href="#">
-            <i class="fab fa-facebook-square fa-2x"></i>
+            <i class="fa fa-facebook-square fa-2x  text-light"></i>
           </a>
           <a href="#">
-            <i class="fab fa-twitter-square fa-2x"></i>
+            <i class="fa fa-twitter-square fa-2x  text-light"></i>
           </a>
           <a href="#">
-            <i class="fab fa-youtube-square fa-2x"></i>
+            <i class="fa fa-youtube-play fa-2x  text-light"></i>
           </a>
         </div>
       </div>
     </div>
   </footer>
+  {% block javascript %}
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  {% endblock javascript %} 

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'taggit',
     'ckeditor',
+    'bootstrap_modal_forms',
 
     # Django Apps
     'django.contrib.admin',
@@ -144,6 +145,8 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'accounts.User'
+
+LOGIN_REDIRECT_URL = '/'
 
 BASE_URL = config('BASE_URL', default='http://127.0.0.1:8000')
 

@@ -33,5 +33,7 @@ a{
 }
 
 a:hover{
-    color: #008080
+    color: #008080}
+.bg-coding {
+    background-color: #008080!important;
 }

@@ -1,2 +1,22 @@
 {% load static %}
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script> 
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
+<script>
+    $(function () {
+      // Sign up button
+      $("#signup-btn").modalForm({
+          formURL: "{% url 'accounts:accounts_register' %}"
+      });
+    });
+  </script>
+
+    <script>
+        $(function () {
+        // Log in button
+        $("#login-btn").modalForm({
+            formURL: "{% url 'accounts:login' %}"
+        });
+        });
+  </script>
+

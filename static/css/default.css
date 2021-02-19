@@ -27,3 +27,11 @@ input:focus, input.form-control:focus {
 .border-primary{
     border-color: #008080 !important;
 }
+
+a{
+    color: #008080;
+}
+
+a:hover{
+    color: #008080
+}

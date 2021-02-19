@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block title %} Make It Work, make it Right, Make it Fast {% endblock %}
+{% block content%}
+<div class="container question-section">  
+    <div class="row mt-3">            
+      {% include 'messages.html' %}
+        <form method="post">
+            {% csrf_token %}
+            {{form.media}}
+            {% include 'includes/b5_form.html' with form=form %}
+            <button type="submit" class="btn btn-primary">Post Your Question</button>
+        </form>       
+    </div>
+</div>
+{% endblock content %}

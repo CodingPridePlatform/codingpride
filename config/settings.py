@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'taggit',
     'ckeditor',
+    'ckeditor_uploader',
     'bootstrap_modal_forms',
 
     # Django Apps
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize'
 
 ]
+
+CKEDITOR_UPLOAD_PATH ="uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -144,9 +147,12 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
+
 AUTH_USER_MODEL = 'accounts.User'
 
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/'
 
 BASE_URL = config('BASE_URL', default='http://127.0.0.1:8000')
 
@@ -172,7 +178,8 @@ CKEDITOR_CONFIGS = {
             ['Bold', 'Italic', 'Underline','Blockquote','Image','PageBreak'],
             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source','TextColor','BGColor','Styles','Format','Font','FontSize']
-        ]
+            ['RemoveFormat','TextColor','BGColor','Styles','Format','Font','FontSize','CodeSnippet']
+        ],
+        'extraPlugins':'codesnippet',
     },
 }

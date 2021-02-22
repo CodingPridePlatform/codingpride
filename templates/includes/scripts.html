@@ -17,6 +17,28 @@
         $("#login-btn").modalForm({
             formURL: "{% url 'accounts:login' %}"
         });
+        $('#login-btn').click(function(){
+          var send_url = $(this).attr('data-url');
+          var login_url = $(this).attr('login-url');
+          console.log(login_url);
+        });
+
+        $.ajax({
+          type: 'GET',
+          url:login_url,
+          data:{
+            'send_url':send_url,
+          }
+        });
         });
   </script>
+
+<script>
+  $(function () {
+  // Log in button
+  $("#ask-qn").modalForm({
+      formURL: "{% url 'accounts:login' %}"
+  });
+  });
+</script>
 

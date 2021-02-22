@@ -4,8 +4,12 @@
 
 {% block content %}
 <div class="container">
+  <div class="row">
+    <div class="col-8"><h2>{{ object.title }}</h2></div>
+    <div class="col-4"><a href="{% url 'question:qn-create' %}" class="btn btn-primary">Ask Question</a></div>
+  </div>
   <div class="row py-4">
-    <h2>{{ object.title }}</h2>
+    
     <p>{{ object.date_published | naturaltime }}</p>
     {% for tag in object.tags.all %}
     <div class="col-3">

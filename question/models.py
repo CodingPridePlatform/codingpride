@@ -3,14 +3,14 @@ from uuid import uuid4
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
 from datetime import datetime
 
 # Create your models here.
 class Question(models.Model):
     title = models.CharField(max_length=250)
-    description = RichTextField(blank=False)
+    description = RichTextUploadingField(blank=False)
     date_published = models.DateTimeField(auto_now_add=True, verbose_name="date published")
     date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated")    
     tags = TaggableManager()

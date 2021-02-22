@@ -71,12 +71,31 @@ class ConfirmRegistrationView(View):
 #     }
 #     return render(request, myTemplate, context)
 
+def login_url(request):
+    send_url = request.GET.get('send_url')
+    print('send_url:', send_url)
+    return send_url
+
 
 class loginView(BSModalLoginView):
     authentication_form = UserLoginForm
     template_name = 'registration/login.html'
-    success_message = 'Success: You were successfully logged in.'
-    extra_context = dict(success_url=reverse_lazy('/'))
+    # success_message = 'Success: You were successfully logged in.'
+    extra_context = dict(next=reverse_lazy('question:qn-create'))
+    
+            
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        red_url = login_url(self.request)
+        print('red_url:', red_url)
+        # context.update({
+        #     self.redirect_field_name: self.get_redirect_url(),
+        #     'site': current_site,
+        #     'site_name': current_site.name,
+        #     **(self.extra_context or {})
+        # })
+        return context
+
 
 
 @login_required

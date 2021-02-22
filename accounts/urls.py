@@ -28,4 +28,6 @@ urlpatterns = [
      path('change-password/', views.change_password, name='change_password'),
      path('profile/', views.profile, name='profile'),
     path('logout/', views.logout_view, name='logout'),
+    
+    path('login_url/', views.login_url, name='login_url')
 ]

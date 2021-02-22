@@ -1,20 +1,32 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load static %}
 
 
 {% block content %}
 <div class="container">
-  <div class="row py-4">
-    <h2>{{ object.title }}</h2>
-    <p>{{ object.date_published | naturaltime }}</p>
-    {% for tag in object.tags.all %}
-    <div class="col-3">
-      <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#{{ tag.name }}</p>
+  <div class="row">
+    <div class="col-9 d-block"> <a href=""> <h4>{{ object.title }}</h4></a>
+      <p>Asked {{ object.date_published | naturaltime }}</p>
     </div>
-    {% endfor %}
-    <hr>
-    <p>{{ object.description | safe | linebreaks }}</p>
-
+    <div class="col-3"><a href="{% url 'question:qn-create' %}" class="btn btn-primary">Ask Question</a></div>
+  </div>
+  <div class="row border-top pt-3">
+    <div class="col-1 d-block vote-section text-center">
+      <img src="{% static 'images/Arrow-Up.png' %}"/>
+      <h5 class="mt-2">90</h5>
+      <img src="{% static 'images/Arrow-Down.png' %}"/>
+    </div>
+    <div class="col-11">      
+      <div class="row mt-0">
+        <p>{{ object.description | safe | linebreaks }}</p>
+        {% for tag in object.tags.all %}   
+        <div class="col-3">
+          <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#{{ tag.name }}</p>
+        </div>
+        {% endfor %}
+      </div>     
+    </div>    
   </div>
 </div>
 {% endblock content %}class

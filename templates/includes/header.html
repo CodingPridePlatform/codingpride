@@ -10,14 +10,14 @@
         <span class="navbar-toggler-icon"></span>
         </button>
 
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'main:home-page' %}">
           <img src="../static/images/mobile.png" alt="Coding Pride Logo">
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'main:home-page' %}">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
@@ -29,10 +29,7 @@
           
         </div>
         <div class="justify-content-end d-flex nav-item">
-          <a href="" class="btn nav-link me-2 btn-secondary btn-sm">Login</a>
-
-          <button id="login-btn" data-bs-toggle="modal" class="btn btn-secondary" type="button" name="button">Login</button>
-
+          <button id="login-btn" data-bs-toggle="modal" class="btn btn-secondary me-2" type="button" name="button" data-url="{% url 'main:home-page' %}" login-url="{% url 'accounts:login_url' %}">Login</button>
           <button id="signup-btn" data-bs-toggle="modal" class="btn btn-primary" type="button" name="button">Sign up</button>
         </div>
       </div>

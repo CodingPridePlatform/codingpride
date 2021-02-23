@@ -28,6 +28,12 @@ input:focus, input.form-control:focus {
     border-color: #008080 !important;
 }
 
+a{
+    color: #008080;
+}
+
+a:hover{
+    color: #008080}
 .bg-coding {
     background-color: #008080!important;
 }

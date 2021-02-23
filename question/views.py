@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden,JsonResponse
 from django.contrib import messages
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
@@ -60,3 +60,26 @@ def list_questions(request):
 class QuestionDetailView(DetailView):
     model = Question
     template_name = 'pages/question_detail.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(QuestionDetailView,self).get_context_data(**kwargs)
+        id = self.kwargs.get(self.pk_url_kwarg,None)
+        question = Question.objects.get(id=id)
+        question_like = QuestionLike.objects.filter(question=question).count()    
+        context["question_like"] = question_like
+        return context
+
+def save_question_like(request):
+    if request.method=='POST':
+        questionid=request.POST['questionId']
+        question=Question.objects.get(pk=questionid)
+        user=request.user
+        check=QuestionLike.objects.filter(question=question,user=user).count()
+        if check > 0:
+            return JsonResponse({'bool':False})
+        else:
+            QuestionLike.objects.create(
+                question=question,
+                user=user
+            )
+            return JsonResponse({'bool':True})

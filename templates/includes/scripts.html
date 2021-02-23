@@ -42,3 +42,28 @@
   });
 </script>
 
+<script>
+  //Upvoting Question
+  $(".upvote-click").on('click',function(){
+    var questionId=$(this).data('question');
+    var voteUrl = $(this).attr('upvote-url');
+
+    //Ajax
+    $.ajax({
+      url:voteUrl,
+      type: 'POST',
+      data:{
+        questionId:questionId,
+        csrfmiddlewaretoken:"{{csrf_token}}"
+      },
+      dataType:'json',
+      success:function(res){
+          var _prevupvote=$(".upvote-count-"+questionId).text();
+          if(res.bool==true){
+              $(".upvote-count-"+questionId).text(parseInt(_prevupvote)+1);              
+          }
+      }
+    })
+  });
+  </script>
+

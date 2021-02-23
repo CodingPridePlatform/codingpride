@@ -7,6 +7,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from taggit.managers import TaggableManager
 from datetime import datetime
 
+User =settings.AUTH_USER_MODEL
+
 # Create your models here.
 class Question(models.Model):
     title = models.CharField(max_length=250)
@@ -24,4 +26,7 @@ class Question(models.Model):
         if not self.slug:
             self.slug = slugify(self.title) + "/" + str(uuid.uuid4())
         return super().save(*args, **kwargs)
-    
+
+class QuestionLike(models.Model):
+    question = models.ForeignKey(Question,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='upvote_user')

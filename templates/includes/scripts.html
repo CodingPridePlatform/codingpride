@@ -67,3 +67,12 @@
   });
   </script>
 
+<script>
+  $(function () {
+  // Log in button
+  $("#ask-qn").modalForm({
+      formURL: "{% url 'accounts:login' %}"
+  });
+  });
+</script>
+

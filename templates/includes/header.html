@@ -28,10 +28,8 @@
           </ul>
           
         </div>
-        <div class="justify-content-end d-flex nav-item">      
-
-          <button id="login-btn" data-bs-toggle="modal" class="btn btn-secondary me-2" type="button" name="button">Login</button>
-
+        <div class="justify-content-end d-flex nav-item">
+          <button id="login-btn" data-bs-toggle="modal" class="btn btn-secondary me-2" type="button" name="button" data-url="{% url 'main:home-page' %}" login-url="{% url 'accounts:login_url' %}">Login</button>
           <button id="signup-btn" data-bs-toggle="modal" class="btn btn-primary" type="button" name="button">Sign up</button>
         </div>
       </div>

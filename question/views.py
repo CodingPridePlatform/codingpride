@@ -43,18 +43,18 @@ def create_edit_question(request, id=None):
         'form': form,
     }
 
-    template_name = 'pages/question_create.html'
+	template_name = 'pages/question_create.html'
 
     return render(request, template_name, context=context)
 
 
 def list_questions(request):
-    all_questions = Question.objects.all().order_by('-id')
-    myTemplate = "pages/list_questions.html"
-    context = {
-        'questions': all_questions,
-    }
-    return render(request, myTemplate, context)
+	all_questions = Question.objects.all().order_by('-id')
+	myTemplate = "pages/list_questions.html"
+	context = {
+		'questions': all_questions,
+	}
+	return render(request, myTemplate, context)
 
 
 class QuestionDetailView(DetailView):

@@ -3,6 +3,7 @@ from django.http import HttpResponseForbidden,JsonResponse
 from django.contrib import messages
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 from .forms import QuestionCreateForm
 from .models import *
@@ -43,18 +44,23 @@ def create_edit_question(request, id=None):
         'form': form,
     }
 
-	template_name = 'pages/question_create.html'
+    template_name = 'pages/question_create.html'
 
     return render(request, template_name, context=context)
 
 
+
+
 def list_questions(request):
-	all_questions = Question.objects.all().order_by('-id')
-	myTemplate = "pages/list_questions.html"
-	context = {
-		'questions': all_questions,
-	}
-	return render(request, myTemplate, context)
+    all_questions = Question.objects.all().order_by('-id')
+    paginator = Paginator(all_questions, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    myTemplate = "pages/list_questions.html"
+    context = {
+        'questions': page_obj,
+    }
+    return render(request, myTemplate, context)
 
 
 class QuestionDetailView(DetailView):

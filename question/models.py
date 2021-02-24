@@ -11,13 +11,14 @@ User =settings.AUTH_USER_MODEL
 
 # Create your models here.
 class Question(models.Model):
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250,unique=True)
     description = RichTextUploadingField(blank=False)
     date_published = models.DateTimeField(auto_now_add=True, verbose_name="date published")
     date_updated = models.DateTimeField(auto_now=True, verbose_name="date updated")    
     tags = TaggableManager()
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True)
     slug = models.SlugField(default="",max_length=250,editable=False)
+
 
     def __str__(self):
         return self.title

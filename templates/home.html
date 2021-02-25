@@ -3,9 +3,15 @@
 {% load humanize %}
 {% block title %}Make It Work, make it Right, Make it Fast{% endblock%}
 {% block content %}
-  <div class="input-group mb-3 search-bar">
-    <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"/>
-  </div>
+  <form action="">
+    <div class="input-group mb-3 search-bar">
+      <span class="input-group-text" id="SearchBar">
+        <i class="fa fa-search" style="font-family: FontAwesome;"></i>
+      </span>
+      <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="Search" aria-label="Search"
+        aria-describedby="SearchBar">
+    </div>
+  </form>
   <div class="row my-4">
     <div class="col-6"><h3>All Questions</h3></div>
     <div class="col-6 d-flex justify-content-end">
@@ -16,7 +22,7 @@
         Ask Question
         </button>
       {% endif %}
-    </div>       
+    </div>
   </div>
   <div class="row my-3">
     <div class="col-md-4">
@@ -33,7 +39,7 @@
     </div>
   </div>
   {% for question in questions %}
-  <div class="card py-3 px-1 my-3">    
+  <div class="card py-3 px-1 my-3">
     <div class="row d-flex align-items-center">
       <div class="col-2 text-center">
         <div><strong>4</strong></div>
@@ -57,14 +63,13 @@
         <div class="row">
           <div class="col-md-12 d-inline-flex">
             {% for tag in question.tags.all %}
-            <h5><span class="badge bg-primary me-2">{{ tag.name}}</span></h5>                
+            <h5><span class="badge bg-primary me-2">{{ tag.name}}</span></h5>
           {% endfor %}
           </div>
         </div>
       </div>
     </div>
-    
-  </div>
-  {% endfor %}  
-{% endblock %}
 
+  </div>
+  {% endfor %}
+{% endblock %}

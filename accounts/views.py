@@ -17,8 +17,8 @@ from .tokens import account_activation_token_generator
 
 User = get_user_model()
 
-from django.urls import reverse_lazy
 from bootstrap_modal_forms.generic import BSModalCreateView, BSModalLoginView
+from django.urls import reverse_lazy
 
 
 class UserRegistrationView(BSModalCreateView):
@@ -81,9 +81,9 @@ class loginView(BSModalLoginView):
     authentication_form = UserLoginForm
     template_name = 'registration/login.html'
     # success_message = 'Success: You were successfully logged in.'
-    extra_context = dict(next=reverse_lazy('question:qn-create'))
-    
-            
+    extra_context = dict(next=reverse_lazy('question:question-add'))
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         red_url = login_url(self.request)

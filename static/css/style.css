@@ -64,3 +64,8 @@ footer {
     width: 50px;
     color: #fff;
 }
+
+.vote-section img{
+width:30px;
+height: auto;
+}

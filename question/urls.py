@@ -9,4 +9,5 @@ urlpatterns = [
     path('<int:id>/edit/', create_edit_question, name='edit_question'),
     path('questions-list/', list_questions, name='qn-list'),
     path('<pk>/', QuestionDetailView.as_view(), name='question-detail'),
+    path('save-like', save_question_like, name='qn-like'),
 ]

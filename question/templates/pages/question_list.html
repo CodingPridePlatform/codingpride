@@ -67,8 +67,12 @@
       <div class="row">
         <div class="col-md-12 d-inline-flex">
           {% for tag in question.tags.all %}
-          <h5><span class="badge {% if forloop.counter|divisibleby:2 %}bg-secondary{% else %}bg-primary{% endif %} me-2"
-              id="{{ tag.id }}">#{{ tag.name}}</span></h5>
+          <a href="{% url 'question:tag-detail' tag.slug %}">
+            <h5>
+              <span class="badge {% if forloop.counter|divisibleby:2 %}bg-secondary{% else %}bg-primary{% endif %} me-2"
+                id="{{ tag.id }}">#{{ tag.name}}</span>
+            </h5>
+          </a>
           {% endfor %}
         </div>
       </div>

@@ -1,4 +1,4 @@
-from django.urls import include, path
+from django.urls import path
 
 from .views import *
 
@@ -12,4 +12,6 @@ urlpatterns = [
     path('question/<slug:slug>/',
          QuestionDetailView.as_view(), name='question-detail'),
     path('save-like', save_question_like, name='qn-like'),
+    path('tag/<slug:tag>/', TagDetailView.as_view(),
+         name='tag-detail'),
 ]

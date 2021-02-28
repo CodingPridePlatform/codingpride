@@ -1,227 +1,71 @@
-@font-face {
-    font-family: 'Open Sans', sans-serif;
-    src: url("../static/fonts/OpenSans-Regular.ttf");
-}
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 html,
 body {
     position: relative;
     min-height: 100vh;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    --theme:  #008080;
+    padding-bottom: 5rem;
+    font-family: 'Rubik', sans-serif;
 }
 
-body {
-    font-family: 'Open Sans', sans-serif !important;
-}
-
-.navibar-nav-items {
-    margin-left: 10%;
-}
-
-@media only screen and (max-width: 768px) {
-    .left-sidebar {
-        display: none;
-
-    }
-
-    .desktop-logo {
-        display: none;
-    }
-}
-
-/* ----------------------- Setting Sidebars-------------------------- */
-
-@media only screen and (min-width: 768px) {
-    .mobile-logo {
-        display: none;
-    }
-}
-
-
-/* ----------------------------- Login Form------------------------------- */
-@media only screen and (min-width:768px) {
-    .login-form {
-        width: 30%;
-        margin-top: 10%;
-    }
-
-
-}
-
-.login-form button {
-    background-color: #008080;
-    color: #fff;
-}
-
-.login-form a {
-    color: #008080;
+a {
     text-decoration: none;
-}
-
-/* ----------------Header----------------------------- */
-.navibar-strip-top {
-    background-color: #008080;
-    height: 4px;
-    width: 100%;
-}
-
-.navbar {
-    box-shadow: 0px 8px 10px #888888;
-}
-
-.navibar-button {
-    margin-right: 20%;
-}
-
-/* ----------------------------CENTER COLUMN-CONTENT--------------------- */
-.content-center-div {
-    padding-top: 4%;
-    margin-left: 0;
-}
-
-
-.updates-bar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0 auto;
-}
-
-.updates-bar li {
-    float: right;
-    position: relative;
-}
-
-.updates-bar .btn:hover {
-    text-decoration: none;
-    background-color: #efefef;
-    color: #333;
-    margin: 0;
-    border: 1px solid #008080;
-}
-
-.updates-bar .btn {
-    border-radius: 0;
-    border: 1px solid #008080;
-}
-
-.home-counter {
-    display: block;
-}
-
-.home-counter .vote-circle {
-    background-color: #008080;
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-}
-
-.home-counter .answers-circle {
-    background-color: #008080;
-    color: #fff;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-}
-
-.home-qn-section {
-    padding-top: 3%;
-    padding-bottom: 2%;
-}
-
-.home-qn-section img {
-    height: 50px;
-    width: 50px;
-    margin-right: 0 !important;
-}
-
-.home-qn-section a {
-    text-decoration: none;
-}
-
-.qn-cartegories p {
-    font-size: 13px;
-}
-
-/* -----------------------------RIGHT CONTENT SECTION-------------------------- */
-.content-right-div {
-    padding-top: 8%;
-    max-width: 300px;
-}
-
-.hot-questions-section a {
-    text-decoration: none;
-}
-
-.logged-user {
-    text-align: center;
-    background-color: #efefef;
-    /* padding: 1% 0% 1% 0%; */
-    margin-bottom: 1%;
-    border-radius: 30px;
-
-}
-
-/* -----------------------LEFT CONTENT SECTION----------------- */
-
-
-.left-sidebar .nav-pills .nav-link {
-    border-radius: 0px;
 }
 
 .left-sidebar {
-    position: sticky;
-    top: 3rem;
-    max-height: 30vh;
-}
-
-/* --------------------------------FOOTER--------------------------- */
-footer {
-    background: var(--theme);
+    position: fixed;
+    top: 0;
     bottom: 0;
-    width: 100%;
+    /* left: 0; */
+    z-index: 100;
+    padding: 75px 0 0;
+    width: 11.5%;
 }
 
-.footer-content {
-    color: #fff;
-    padding-top: 5%;
-    text-align: center;
+@media (max-width: 767.98px) {
+    .left-sidebar {
+        left: 0;
+        width: 100%;
+    }
 }
 
-.footer-content a {
-    color: #fff;
-
+.sidebar_sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 75px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
-/* --------------------------------QUESTION------------------------------ */
-.question-form-container{
-  border: 1px solid #008080;
-  padding: 3%;
-  border-radius: 5px;
-  margin-top: 2%;
-  background-color:#fff
-}
-
-/* --------------------------------QUESTION------------------------------ */
-.question-section{
-    margin-bottom: 10%;
-}
-@media only screen and (max-width: 768px){
-    .question-section{
-        margin-bottom: 25%;
+@supports ((position: -webkit-sticky) or (position: sticky)) {
+    .sidebar_sticky {
+        position: -webkit-sticky;
+        position: sticky;
     }
 }
 
 
-.question-form-container{
-  border: 1px solid #008080;
-  padding: 3%;
-  border-radius: 5px;
-  margin-top: 2%;
-  background-color:#fff
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5rem;
+    z-index: 101;
+}
+
+.social-links a {
+    text-decoration: none;
+}
+
+.social-links .fab {
+    width: 50px;
+    color: #fff;
+}
+
+.vote-section img{
+width:30px;
+height: auto;
 }

@@ -17,10 +17,14 @@ from .tokens import account_activation_token_generator
 
 User = get_user_model()
 
+from django.urls import reverse_lazy
+from bootstrap_modal_forms.generic import BSModalCreateView, BSModalLoginView
 
-class UserRegistrationView(CreateView):
-    form_class = UserCreationForm
+
+class UserRegistrationView(BSModalCreateView):
+    form_class = CustomUserCreationForm
     template_name = 'registration/signup.html'
+    success_message = 'Success: Sign up succeeded. You can now Log in.'
     success_url = reverse_lazy('accounts:login')
 
     def form_valid(self, form):
@@ -53,19 +57,45 @@ class ConfirmRegistrationView(View):
         return redirect('accounts:login')
 
 
-def loginView(request, *args, **kwargs):
-    form = UserLoginForm()
-    if request.method == 'POST':
-        form = UserLoginForm(request.POST or None)
-        if form.is_valid():
-            user_obj = form.cleaned_data.get('user_obj')
-            login(request, user_obj)
-            return HttpResponseRedirect('/')
-    myTemplate = 'registration/login.html'
-    context = {
-        'form': form
-    }
-    return render(request, myTemplate, context)
+# def loginView(request, *args, **kwargs):
+#     form = UserLoginForm()
+#     if request.method == 'POST':
+#         form = UserLoginForm(request.POST or None)
+#         if form.is_valid():
+#             user_obj = form.cleaned_data.get('user_obj')
+#             login(request, user_obj)
+#             return HttpResponseRedirect('/')
+#     myTemplate = 'registration/login.html'
+#     context = {
+#         'form': form
+#     }
+#     return render(request, myTemplate, context)
+
+def login_url(request):
+    send_url = request.GET.get('send_url')
+    print('send_url:', send_url)
+    return send_url
+
+
+class loginView(BSModalLoginView):
+    authentication_form = UserLoginForm
+    template_name = 'registration/login.html'
+    # success_message = 'Success: You were successfully logged in.'
+    extra_context = dict(next=reverse_lazy('question:qn-create'))
+    
+            
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        red_url = login_url(self.request)
+        print('red_url:', red_url)
+        # context.update({
+        #     self.redirect_field_name: self.get_redirect_url(),
+        #     'site': current_site,
+        #     'site_name': current_site.name,
+        #     **(self.extra_context or {})
+        # })
+        return context
+
 
 
 @login_required

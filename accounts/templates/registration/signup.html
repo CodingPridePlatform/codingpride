@@ -1,38 +1,55 @@
+{% extends 'base.html' %}
 {% load widget_tweaks %}
 
-<form method="post" action="">
+{% block content %}
+
+<form action="" method="POST">
   {% csrf_token %}
+  <h2 class="text-center mb-3">Sign Up</h2>
+  {% include 'includes/floating_labels_form.html' with form=form %}
+  <button type="submit" class="submit-btn btn btn-primary">Sign up</button>
+</form>
 
-  <div class="modal-header bg-coding text-light">
-    <h3 class="modal-title">Sign up</h3>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-  </div>
+{% endblock content %}
 
-  <div class="modal-body">
+{% comment %}
+{% load widget_tweaks %}
 
-    <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
-      {% for error in form.non_field_errors %}
-        {{ error }}
+  <form method="post" action="">
+    {% csrf_token %}
+
+    <div class="modal-header bg-coding text-light">
+      <h3 class="modal-title">Sign up</h3>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+
+      <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+        {% for error in form.non_field_errors %}
+          {{ error }}
+        {% endfor %}
+      </div>
+
+      {% for field in form %}
+        <div class="form-group">
+          <div class="form-floating mb-3">
+          {% render_field field class="form-control" placeholder=field.label %}
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          </div>
+          <div class="{% if field.errors %} invalid{% endif %}">
+            {% for error in field.errors %}
+              <p class="help-block">{{ error }}</p>
+            {% endfor %}
+          </div>
+        </div>
       {% endfor %}
     </div>
 
-    {% for field in form %}
-      <div class="form-group">
-        <div class="form-floating mb-3">
-        {% render_field field class="form-control" placeholder=field.label %}
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        </div>
-        <div class="{% if field.errors %} invalid{% endif %}">
-          {% for error in field.errors %}
-            <p class="help-block">{{ error }}</p>
-          {% endfor %}
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+    <div class="modal-footer">
+      <button type="submit" class="submit-btn btn btn-primary">Sign up</button>
+    </div>
 
-  <div class="modal-footer">
-    <button type="submit" class="submit-btn btn btn-primary">Sign up</button>
-  </div>
+  </form>
 
-</form>
+{% endcomment %}

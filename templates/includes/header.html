@@ -34,8 +34,19 @@
         </div>
         {% else %}
         <div class="justify-content-end d-flex nav-item">
-          <button id="login-btn" data-bs-toggle="modal" class="btn btn-secondary me-2" type="button" name="button" data-url="{% url 'main:home-page' %}" login-url="{% url 'accounts:login_url' %}">Login</button>
-          <button id="signup-btn" data-bs-toggle="modal" class="btn btn-primary" type="button" name="button">Sign up</button>
+          {% comment %}
+            <button id="login-btn" data-bs-toggle="modal" class="btn btn-secondary me-2" type="button" name="button" data-url="{% url 'main:home-page' %}" login-url="{% url 'accounts:login_url' %}">Login</button>
+            <button id="signup-btn" data-bs-toggle="modal" class="btn btn-primary" type="button" name="button">Sign up</button>
+          {% endcomment %}
+
+          <!-- Button trigger signin modal -->
+          <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#signinModal">
+            Sign In
+          </button>
+          <!-- Button trigger signup modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">
+            Sign Up
+          </button>
         </div>
         {% endif %}
       </div>

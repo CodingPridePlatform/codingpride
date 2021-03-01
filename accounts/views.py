@@ -12,7 +12,6 @@ from .tokens import account_activation_token_generator
 
 User = get_user_model()
 
-
 class UserRegistrationView(CreateView):
     form_class = forms.UserCreationForm
     template_name = 'registration/signup.html'

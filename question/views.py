@@ -11,12 +11,12 @@ from .models import *
 
 
 @login_required
-def create_edit_question(request, id=None):
+def create_edit_question(request, slug=None):
 
     user = request.user
 
-    if id:
-        obj = get_object_or_404(Question, id=id)
+    if slug:
+        obj = get_object_or_404(Question, slug=slug)
         if obj.author != user:
             return HttpResponseForbidden()
     else:
@@ -33,9 +33,11 @@ def create_edit_question(request, id=None):
             form.save_m2m()  # save tags into db
 
             messages.success(
-                request, 'Your Question Has Been Submitted Successfully', extra_tags='alert alert-success')
+                request, 'Your Question Has Been Submitted Successfully',
+                extra_tags='alert alert-success'
+            )
 
-            return redirect(to='question:question-detail')
+            return redirect(obj.get_absolute_url())
 
         else:
             messages.error(request, 'Errors occurred',

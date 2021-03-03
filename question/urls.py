@@ -14,4 +14,5 @@ urlpatterns = [
     path('save-like', save_question_like, name='qn-like'),
     path('tag/<slug:tag>/', TagDetailView.as_view(),
          name='tag-detail'),
+    path('search/', search, name='search'),
 ]

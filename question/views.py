@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import HttpResponseForbidden, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView, ListView
@@ -101,3 +102,18 @@ class TagDetailView(ListView):
         tag = self.kwargs['tag']
         questions = Question.objects.filter(tags__slug=tag)
         return questions.order_by('-date_published')
+
+
+def search(request):
+    query = request.GET.get('q', None)
+    search_results = Question.objects.filter(
+        Q(title__icontains=query) |
+        Q(description__icontains=query) |
+        Q(tags__name__icontains=query) |
+        Q(author__profile__name__icontains=query)
+    )
+    context = {
+        'questions': search_results,
+        'query': query
+    }
+    return render(request, 'pages/question_list.html', context)

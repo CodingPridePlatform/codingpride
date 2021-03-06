@@ -6,7 +6,7 @@
     $(function () {
       // Sign up button
       $("#signup-btn").modalForm({
-          formURL: "{% url 'accounts:accounts_register' %}"
+        formURL: "{% url 'account_signup' %}"
       });
     });
   </script>
@@ -15,7 +15,7 @@
         $(function () {
         // Log in button
         $("#login-btn").modalForm({
-            formURL: "{% url 'accounts:login' %}"
+          formURL: "{% url 'account_login' %}"
         });
         $('#login-btn').click(function(){
           var send_url = $(this).attr('data-url');
@@ -37,7 +37,7 @@
   $(function () {
   // Log in button
   $("#ask-qn").modalForm({
-      formURL: "{% url 'accounts:login' %}"
+    formURL: "{% url 'account_login' %}"
   });
   });
 </script>
@@ -60,7 +60,7 @@
       success:function(res){
           var _prevupvote=$(".upvote-count-"+questionId).text();
           if(res.bool==true){
-              $(".upvote-count-"+questionId).text(parseInt(_prevupvote)+1);              
+              $(".upvote-count-"+questionId).text(parseInt(_prevupvote)+1);
           }
       }
     })
@@ -71,8 +71,7 @@
   $(function () {
   // Log in button
   $("#ask-qn").modalForm({
-      formURL: "{% url 'accounts:login' %}"
+    formURL: "{% url 'account_login' %}"
   });
   });
 </script>
-

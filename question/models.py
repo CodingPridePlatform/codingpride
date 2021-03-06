@@ -35,6 +35,7 @@ class Question(models.Model):
 
 
 class QuestionLike(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(
+        Question, related_name='question_likes', on_delete=models.CASCADE)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='upvote_user')

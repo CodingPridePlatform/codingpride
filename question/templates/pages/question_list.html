@@ -5,14 +5,13 @@
 
 <form action="{% url 'question:search' %}" method="GET">
   <div class="input-group mb-3 search-bar">
+    <input type="text" name="q" value="{{ query }}" class="form-control border-2 border-secondary rounded-3"
+      placeholder="Search" aria-label="Search" aria-describedby="SearchBar">
     <button type="submit">
       <span class="input-group-text" id="SearchBar">
         <i class="fa fa-search" style="font-family: FontAwesome;"></i>
       </span>
     </button>
-    <input type="text" name="q" value="{{ query }}" class="form-control border-2 border-secondary rounded-3"
-      placeholder="Search" aria-label="Search"
-      aria-describedby="SearchBar">
   </div>
 </form>
 <div class="row my-4">

@@ -111,8 +111,7 @@ def search(request):
     search_results = Question.objects.filter(
         Q(title__icontains=query) |
         Q(description__icontains=query) |
-        Q(tags__name__icontains=query) |
-        Q(author__profile__name__icontains=query)
+        Q(tags__name__icontains=query)
     )
     context = {
         'questions': search_results,

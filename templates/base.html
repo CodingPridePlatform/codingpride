@@ -21,12 +21,13 @@
 
   <body>
     {% include 'includes/header.html' %}
+    {% include 'messages.html' %}
 
     <!-- Signup Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form method="POST" action="{% url 'signup' %}">
+          <form method="POST" action="{% url 'account_signup' %}">
             {% csrf_token %}
             <div class="modal-header">
               <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
@@ -70,12 +71,17 @@
 
     <div class="container">
       <div class="row my-4">
-        {% include 'includes/left_sidebar.html' %}
+        {% block left_sidebar %}
 
-        <div class="col-md-7 offset-md-2">
-          {% block content %}{% endblock %}
+        {% endblock left_sidebar %}
         </div>
-        {% include 'includes/right_sidebar.html' %}
+      <div class="col-md-7 offset-md-2">
+        {% block content %}{% endblock %}
+      </div>
+      <div>
+        {% block right_sidebar %}
+
+        {% endblock right_sidebar %}
       </div>
     </div>
     {% include 'includes/footer.html' %}

@@ -30,7 +30,7 @@
 
         {% if request.user.is_authenticated %}
         <div class="justify-content-end d-flex nav-item">
-          <a href="{% url 'account_ogout' %}" class="btn btn-outline-secondary">Logout</a>
+          <a href="{% url 'account_logout' %}" class="btn btn-outline-secondary">Logout</a>
         </div>
         {% else %}
         <div class="justify-content-end d-flex nav-item">

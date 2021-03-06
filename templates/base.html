@@ -26,7 +26,7 @@
     <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form method="POST" action="{% url 'accounts:accounts_register' %}">
+          <form method="POST" action="{% url 'signup' %}">
             {% csrf_token %}
             <div class="modal-header">
               <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
@@ -49,7 +49,7 @@
     <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form method="POST" action="{% url 'accounts:login' %}">
+          <form method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             <div class="modal-header">
               <h5 class="modal-title" id="signinModalLabel">Sign In</h5>

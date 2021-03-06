@@ -6,18 +6,15 @@ name = "pypi"
 [packages]
 django = "*"
 django-decouple = "*"
-django-crispy-forms = "*"
 psycopg2 = "*"
-six = "*"
 pillow = "*"
 django-taggit = "*"
 django-ckeditor = "*"
 django-widget-tweaks = "*"
-django-bootstrap-modal-forms = "*"
+django-allauth = "*"
 
 [dev-packages]
 autopep8 = "*"
-six = "*"
 pytest-cov = "*"
 pytest-django = "*"
 

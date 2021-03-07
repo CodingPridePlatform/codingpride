@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-9 d-block"> <a href=""> <h4>{{ object.title }}</h4></a>
+      <p>Asked {{ object.date_published | naturaltime }}</p>
+    </div>
+    <div class="col-3"><a href="{% url 'question:question-add' %}" class="btn btn-primary">Ask Question</a></div>
+  </div>
+  <div class="row border-top pt-3">
+
+    <div class="col-1 d-block vote-section text-center">
+      <p>Likes</p>
+      <h5 class="mt-2 p-2 rounded upvote-count-{{question.id}}" style="background-color:#efefef">{{question_like}}</h5>
+      <i class="fa fa-thumbs-o-up fa-2x upvote-click" aria-hidden="true" data-question="{{ question.id }}" upvote-url="{% url 'question:qn-like' %}"></i></i>
+    </div>
+    <div class="col-11">
+        <p>{{ object.description | safe | linebreaks }}</p>
+        <div class="row">
+          {% for tag in object.tags.all %}
+          <div class="col-2" style="margin-top:-3%">
+            <a href=""><p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#{{ tag.name }}</p></a>
+          </div>
+          {% endfor %}
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

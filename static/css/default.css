@@ -4,6 +4,12 @@
     border-color:#008080
 }
 
+.bg-primary{
+    background-color: #008080 !important;
+    color: #fff;
+    border-color:#008080
+}
+
 .btn-primary:hover{
     background-color: #008080;
     border-color:#fff
@@ -28,6 +34,22 @@ input:focus, input.form-control:focus {
     border-color: #008080 !important;
 }
 
+a{
+    color: #008080;
+}
+
+a:hover{
+    color: #008080
+}
 .bg-coding {
     background-color: #008080!important;
+}
+
+.page-item.active .page-link {
+    background-color: #008080;
+    border-color: #008080;
+}
+
+.page-link {
+    color: #008080;
 }

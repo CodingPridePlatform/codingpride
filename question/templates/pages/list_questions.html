@@ -34,8 +34,8 @@
       </div>
     </div>
   </div>
+  {% for question in questions %} 
   <div class="card py-3 px-1 my-3">
-    {% for question in questions %}
     <div class="row d-flex align-items-center">
       <div class="col-2 text-center">
         <div><strong>4</strong></div>
@@ -54,7 +54,7 @@
           </h4>
         </a>
         <p class="question-paragraph">
-          {{ question.description|safe|striptags|truncatechars:300 }}
+          {{ question.description|safe|striptags|truncatechars:50 }}
         </p>
         <div class="row">
 <<<<<<< HEAD
@@ -88,7 +88,53 @@
         </div>
       </div>
     </div>
-    {% endfor %}
   </div>
+  {% endfor %}
+  
+      <!--Pagination-->
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+        {% if questions.has_previous %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ questions.previous_page_number }}">Previous</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+        {% endif %}
 
+        {% if questions.number|add:'-4' > 1 %}
+            <li class="page-item"><a class="page-link" href="?page={{ questions.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% for i in questions.paginator.page_range %}
+            {% if questions.number == i %}
+                <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+            {% elif i > questions.number|add:'-5' and i < questions.number|add:'5' %}
+                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if questions.paginator.num_pages > questions.number|add:'4' %}
+           <li class="page-item"><a class="page-link" href="?page={{ questions.number|add:'5' }}">&hellip;</a></li>
+        {% endif %}
+
+        {% if questions.has_next %}
+            <li class="page-item">
+            <a class="page-link" href="?page={{ questions.next_page_number }}">Next</a>
+          </li>
+        {% else %}
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+    <!--end of Pagination-->
 {% endblock content %}

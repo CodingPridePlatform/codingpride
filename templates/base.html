@@ -11,13 +11,62 @@
     <link rel="stylesheet" href="{% static 'css/default.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-
+    <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
       <title>CodingPride - {% block title %}{% endblock %}</title>
       {% block stylesheet %}{% endblock stylesheet %}
   </head>
 
   <body>
     {% include 'includes/header.html' %}
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form method="POST" action="{% url 'accounts:accounts_register' %}">
+            {% csrf_token %}
+            <div class="modal-header">
+              <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p class="mb-3">
+                {% include 'includes/floating_labels_form.html' with form=signup_form %}
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Sign Up</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Signin Modal -->
+    <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form method="POST" action="{% url 'accounts:login' %}">
+            {% csrf_token %}
+            <div class="modal-header">
+              <h5 class="modal-title" id="signinModalLabel">Sign In</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p class="mb-3">
+                {% include 'includes/floating_labels_form.html' with form=signin_form %}
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-secondary">Sign In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
 
     <div class="container">
       <div class="row my-4">
@@ -28,12 +77,12 @@
         </div>
         {% include 'includes/right_sidebar.html' %}
       </div>
-    </div>  
+    </div>
     {% include 'includes/footer.html' %}
-  
+
     {% include 'includes/scripts.html' %}
-  
-    {% block javascript %}{% endblock javascript %}    
+
+    {% block javascript %}{% endblock javascript %}
   </body>
 
 </html>

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'taggit',
     'ckeditor',
+    'ckeditor_uploader',
     'bootstrap_modal_forms',
 
     # Django Apps
@@ -54,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize'
 
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'accounts.context_processors.user_forms_context',
             ],
         },
     },
@@ -144,9 +148,12 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
+
 AUTH_USER_MODEL = 'accounts.User'
 
-LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 BASE_URL = config('BASE_URL', default='http://127.0.0.1:8000')
 
@@ -169,10 +176,13 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
         'toolbar': 'Custom',
         'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline','Blockquote','Image','PageBreak'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Bold', 'Italic', 'Underline', 'Blockquote', 'Image', 'PageBreak'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source','TextColor','BGColor','Styles','Format','Font','FontSize']
-        ]
+            ['RemoveFormat', 'TextColor', 'BGColor', 'Styles',
+                'Format', 'Font', 'FontSize', 'CodeSnippet']
+        ],
+        'extraPlugins': 'codesnippet',
     },
 }

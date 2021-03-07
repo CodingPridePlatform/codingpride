@@ -1,46 +1,6 @@
 {% load static %}
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script src="{% static 'js/jquery.bootstrap.modal.forms.min.js' %}"></script>
-<script>
-    $(function () {
-      // Sign up button
-      $("#signup-btn").modalForm({
-        formURL: "{% url 'account_signup' %}"
-      });
-    });
-  </script>
-
-    <script>
-        $(function () {
-        // Log in button
-        $("#login-btn").modalForm({
-          formURL: "{% url 'account_login' %}"
-        });
-        $('#login-btn').click(function(){
-          var send_url = $(this).attr('data-url');
-          var login_url = $(this).attr('login-url');
-          console.log(login_url);
-        });
-
-        $.ajax({
-          type: 'GET',
-          url:login_url,
-          data:{
-            'send_url':send_url,
-          }
-        });
-        });
-  </script>
-
-<script>
-  $(function () {
-  // Log in button
-  $("#ask-qn").modalForm({
-    formURL: "{% url 'account_login' %}"
-  });
-  });
-</script>
 
 <script>
   //Upvoting Question
@@ -66,12 +26,3 @@
     })
   });
   </script>
-
-<script>
-  $(function () {
-  // Log in button
-  $("#ask-qn").modalForm({
-    formURL: "{% url 'account_login' %}"
-  });
-  });
-</script>

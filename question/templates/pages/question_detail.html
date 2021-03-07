@@ -6,7 +6,8 @@
 {% block content %}
 <div class="container">
   <div class="row">
-    <div class="col-9 d-block"> <a href=""> <h4>{{ object.title }}</h4></a>
+    <div class="col-9 d-block">
+      <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
       <p>Asked {{ object.date_published | naturaltime }}</p>
     </div>
     <div class="col-3"><a href="{% url 'question:question-add' %}" class="btn btn-primary">Ask Question</a></div>

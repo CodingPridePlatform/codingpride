@@ -75,9 +75,14 @@
     </div>
   </div>
 </div>
+{% empty %}
+<p class="lead">
+  No questions found!
+</p>
 {% endfor %}
 
 <!--Pagination-->
+{% if question.paginator %}
 <nav aria-label="navigation">
   <ul class="pagination justify-content-center">
     {% if questions.has_previous %}
@@ -122,5 +127,6 @@
       {% endif %}
   </ul>
 </nav>
+{% endif %}
 <!--end of Pagination-->
 {% endblock content %}

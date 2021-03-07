@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Pride</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/default.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -15,8 +14,8 @@
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-      <title>CodingPride - {% block title %}{% endblock %}</title>
-      {% block stylesheet %}{% endblock stylesheet %}
+    <title>{% block title %}Coding Pride{% endblock %}</title>
+    {% block stylesheet %}{% endblock stylesheet %}
   </head>
 
   <body>
@@ -58,7 +57,7 @@
             </div>
             <div class="modal-body">
               <p class="mb-3">
-                {% include 'includes/b5_form.html' with form=signin_form %}
+                {% include 'includes/floating_labels_form.html' with form=signin_form %}
               </p>
             </div>
             <div class="modal-footer">
@@ -74,7 +73,7 @@
         {% block left_sidebar %}
 
         {% endblock left_sidebar %}
-        </div>
+      </div>
       <div class="col-md-7 offset-md-2">
         {% block content %}{% endblock %}
       </div>

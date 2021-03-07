@@ -36,7 +36,7 @@
 
 <form class="login" method="POST" action="{% url 'account_login' %}">
   {% csrf_token %}
-  {% include 'includes/b5_form.html' with form=form %}
+  {% include 'includes/floating_labels_form.html' with form=form %}
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}

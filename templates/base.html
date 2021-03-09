@@ -20,7 +20,10 @@
 
   <body>
     {% include 'includes/header.html' %}
+    {% block messages %}
     {% include 'messages.html' %}
+    {% endblock messages %}
+
 
     <!-- Signup Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
@@ -68,21 +71,27 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="row my-4">
-        {% block left_sidebar %}
+    <div class="container my-4">
+      {% block content %}
+      <div class="row">
+        <div class="col-md-2">
+          {% block left_sidebar %}
 
-        {% endblock left_sidebar %}
-      </div>
-      <div class="col-md-7 offset-md-2">
-        {% block content %}{% endblock %}
-      </div>
-      <div>
-        {% block right_sidebar %}
+          {% endblock left_sidebar %}
+        </div>
+        <div class="col-md-7">
+          {% include 'messages.html' %}
+          {% block center %}{% endblock center %}
+        </div>
+        <div class="col-md-3">
+          {% block right_sidebar %}
 
-        {% endblock right_sidebar %}
+          {% endblock right_sidebar %}
+        </div>
       </div>
+    {% endblock content %}
     </div>
+
     {% include 'includes/footer.html' %}
 
     {% include 'includes/scripts.html' %}

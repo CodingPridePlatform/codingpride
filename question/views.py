@@ -9,6 +9,8 @@ from django.views.generic import DetailView, ListView
 from .forms import QuestionCreateForm
 from .models import *
 
+from answer.forms import *
+
 
 @login_required
 def create_edit_question(request, slug=None):
@@ -59,6 +61,7 @@ def question_list_view(request):
     paginator = Paginator(all_questions, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    
     template_name = "pages/question_list.html"
     context = {
         'questions': page_obj,
@@ -75,7 +78,12 @@ class QuestionDetailView(DetailView):
         slug = self.kwargs.get(self.slug_url_kwarg, None)
         question = Question.objects.get(slug=slug)
         question_like = QuestionLike.objects.filter(question=question).count()
+        
+        form = AnswerQuestionForm()
+
         context["question_like"] = question_like
+        context["answers"] = Answer.objects.filter(question__slug = question.slug)
+        context["form"] = form
         return context
 
 

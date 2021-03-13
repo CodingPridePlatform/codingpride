@@ -28,6 +28,51 @@
           </div>
           {% endfor %}
         </div>
+        <div class="answers">
+          {% if answers %}
+          {% for answer in answers %}
+          <div class="card py-3 px-1 my-3">
+              <div class="row d-flex align-items-center">
+                <div class="col-2 text-center">
+                  <div><strong>{{ question.question_likes.count }}</strong></div>
+                  <div>
+                    <p>Votes</p>
+                  </div>
+                  <div><strong>4</strong></div>
+                  <div class="mt2">
+                    <p>Answers</p>
+                  </div>
+                </div>
+                <div class="col-10">
+                  <p class="answer-paragraph">
+                    <p>{{ answer.description | safe | linebreaks }}</p>
+                  </p>
+                  <div class="row small mt-5">
+                    <p class="small mr-5">
+                      answered {{answer.date_answered | naturaltime}}
+                    </p>
+                    <p class="small ml-5">
+                      {{answer.author}} answered this
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          </div>
+        </div>
+      </div>
+          {% endif %}
+        <div class="answer-form">
+          <h5>POST YOUR ANSWER</h5>
+          <form method="POST" action="{% url 'answer:answer' object.slug %}">
+            {% csrf_token %}
+            {{ form.media }}
+            {% include 'includes/b5_form.html' with form=form %}
+            <button type="submit" class="btn btn-outline-primary">Answer</button>
+          </form>
+        </div>
     </div>
   </div>
 </div>

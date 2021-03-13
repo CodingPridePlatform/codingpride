@@ -34,13 +34,12 @@
           <div class="card py-3 px-1 my-3">
               <div class="row d-flex align-items-center">
                 <div class="col-2 text-center">
-                  <div><strong>{{ question.question_likes.count }}</strong></div>
-                  <div>
-                    <p>Votes</p>
+                  <div class="">
+                    <i class="fa fa-check fa-2x text-success"></i>
                   </div>
-                  <div><strong>4</strong></div>
-                  <div class="mt2">
-                    <p>Answers</p>
+                  <div class="mt-5"><strong>4</strong></div>
+                  <div class="mt3">
+                    <i class="fa fa-thumbs-o-up fa-2x upvote-click" aria-hidden="true" data-question="{{ question.id }}" upvote-url="{% url 'question:qn-like' %}"></i>
                   </div>
                 </div>
                 <div class="col-10">

@@ -1,7 +1,15 @@
 {% extends 'base.html'%}
 {% load static %}
 {% load humanize %}
+<<<<<<< HEAD
+{% block content%}
+<div class="container">
+  {% for question in questions %} 
+  <div class="row mt-2 mb-1">
+    <div class="col-md-2 mt-5 pt-5">
+=======
 {% block content %}
+>>>>>>> b4ef436c433481afc419a73438136f3ed3e9d3c8
 
   <div class="input-group mb-3 search-bar">
     <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome"/>
@@ -49,10 +57,33 @@
           {{ question.description|safe|striptags|truncatechars:50 }}
         </p>
         <div class="row">
+<<<<<<< HEAD
+          <div class="col-sm-8">
+            <div class="row qn-cartegories">
+              {% for tag in question.tags.all %}
+              <div class="col-3">
+                <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#{{ tag.name}}</p>
+              </div>
+              {% endfor %}
+            </div>
+            </div>
+            <div class="col-sm-4">
+              <p>Asked {{ question.date_published | naturaltime }} </p>
+              <div class="row">
+                <div class="col-sm-6">
+                 <img src="{% static 'profile_pictures/default.jpg' %}" alt="">
+                </div>
+                <div class="col-sm-6">
+                  <h6><a href="http://">Jaybla</a></h6>
+                </div>
+              </div>
+            </div>
+=======
           <div class="col-md-12 d-inline-flex">
             {% for tag in question.tags.all %}
             <h5><span class="badge bg-primary me-2">{{ tag.name}}</span></h5>                
           {% endfor %}
+>>>>>>> b4ef436c433481afc419a73438136f3ed3e9d3c8
           </div>
         </div>
       </div>

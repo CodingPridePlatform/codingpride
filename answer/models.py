@@ -21,11 +21,8 @@ class Answer(models.Model):
         blank=True, null=True)
 
     def __str__(self):
-        return str(self.id)
+        return self.question.title + " - " + "Answer" + " - " + str(self.id)
     
-
-    def get_absolute_url(self):
-        return reverse('question:question-detail', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs):
         self.slug = slugify('answer - '+ self.question.title) + "-" + str(uuid4())

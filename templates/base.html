@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding Pride</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/default.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -15,18 +14,19 @@
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-      <title>CodingPride - {% block title %}{% endblock %}</title>
-      {% block stylesheet %}{% endblock stylesheet %}
+    <title>{% block title %}Coding Pride{% endblock %}</title>
+    {% block stylesheet %}{% endblock stylesheet %}
   </head>
 
   <body>
     {% include 'includes/header.html' %}
+    {% include 'messages.html' %}
 
     <!-- Signup Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form method="POST" action="{% url 'accounts:accounts_register' %}">
+          <form method="POST" action="{% url 'account_signup' %}">
             {% csrf_token %}
             <div class="modal-header">
               <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
@@ -49,7 +49,7 @@
     <div class="modal fade" id="signinModal" tabindex="-1" aria-labelledby="signinModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
-          <form method="POST" action="{% url 'accounts:login' %}">
+          <form method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
             <div class="modal-header">
               <h5 class="modal-title" id="signinModalLabel">Sign In</h5>
@@ -70,12 +70,17 @@
 
     <div class="container">
       <div class="row my-4">
-        {% include 'includes/left_sidebar.html' %}
+        {% block left_sidebar %}
 
-        <div class="col-md-7 offset-md-2">
-          {% block content %}{% endblock %}
-        </div>
-        {% include 'includes/right_sidebar.html' %}
+        {% endblock left_sidebar %}
+      </div>
+      <div class="col-md-7 offset-md-2">
+        {% block content %}{% endblock %}
+      </div>
+      <div>
+        {% block right_sidebar %}
+
+        {% endblock right_sidebar %}
       </div>
     </div>
     {% include 'includes/footer.html' %}

@@ -3,13 +3,15 @@
 {% load humanize %}
 {% block content %}
 
-<form action="">
+<form action="{% url 'question:search' %}" method="GET">
   <div class="input-group mb-3 search-bar">
-    <span class="input-group-text" id="SearchBar">
-      <i class="fa fa-search" style="font-family: FontAwesome;"></i>
-    </span>
-    <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="Search" aria-label="Search"
-      aria-describedby="SearchBar">
+    <input type="text" name="q" value="{{ query }}" class="form-control border-2 border-secondary rounded-3"
+      placeholder="Search" aria-label="Search" aria-describedby="SearchBar">
+    <button type="submit">
+      <span class="input-group-text" id="SearchBar">
+        <i class="fa fa-search" style="font-family: FontAwesome;"></i>
+      </span>
+    </button>
   </div>
 </form>
 <div class="row my-4">
@@ -17,20 +19,14 @@
     <h3>All Questions</h3>
   </div>
   <div class="col-6 d-flex justify-content-end">
-    {% if request.user.is_authenticated %}
     <a href="{% url 'question:question-add' %}" class="btn btn-primary">
       Ask Question
     </a>
-    {% else %}
-    <button type="button" class="btn btn-primary" id="ask-qn">
-      Ask Question
-    </button>
-    {% endif %}
   </div>
 </div>
 <div class="row my-3">
   <div class="col-md-4">
-    <p>87409 Questions</p>
+    <p>{{ questions | length }} Questions</p>
   </div>
   <div class="col-md-8 text-lg-end col-sm-12 text-sm-center">
     <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -46,7 +42,7 @@
 <div class="card py-3 px-1 my-3">
   <div class="row d-flex align-items-center">
     <div class="col-2 text-center">
-      <div><strong>4</strong></div>
+      <div><strong>{{ question.question_likes.count }}</strong></div>
       <div>
         <p>Votes</p>
       </div>
@@ -79,9 +75,14 @@
     </div>
   </div>
 </div>
+{% empty %}
+<p class="lead">
+  No questions found!
+</p>
 {% endfor %}
 
 <!--Pagination-->
+{% if question.paginator %}
 <nav aria-label="navigation">
   <ul class="pagination justify-content-center">
     {% if questions.has_previous %}
@@ -126,5 +127,6 @@
       {% endif %}
   </ul>
 </nav>
+{% endif %}
 <!--end of Pagination-->
 {% endblock content %}

@@ -34,15 +34,14 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1',
 # Application definition
 
 INSTALLED_APPS = [
-    # Custom Apps
-    'accounts.apps.AccountsConfig',
-    'crispy_forms',
     'main',
     'question',
+    'answer',
+
     'widget_tweaks',
     'taggit',
     'ckeditor',
-    'bootstrap_modal_forms',
+    'ckeditor_uploader',
 
     # Django Apps
     'django.contrib.admin',
@@ -51,9 +50,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'django.contrib.sites',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'main.context_processors.user_forms_context_processor',
             ],
         },
     },
@@ -144,9 +150,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-AUTH_USER_MODEL = 'accounts.User'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 BASE_URL = config('BASE_URL', default='http://127.0.0.1:8000')
 
@@ -169,10 +176,29 @@ CKEDITOR_CONFIGS = {
         'width': '100%',
         'toolbar': 'Custom',
         'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline','Blockquote','Image','PageBreak'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Bold', 'Italic', 'Underline', 'Blockquote', 'Image', 'PageBreak'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-',
+                'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
             ['Link', 'Unlink'],
-            ['RemoveFormat', 'Source','TextColor','BGColor','Styles','Format','Font','FontSize']
-        ]
+            ['RemoveFormat', 'TextColor', 'BGColor', 'Styles',
+                'Format', 'Font', 'FontSize', 'CodeSnippet']
+        ],
+        'extraPlugins': 'codesnippet',
     },
 }
+
+# Django Allauth configurations
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+# ACCOUNT_SIGNUP_FORM_CLASS = ''

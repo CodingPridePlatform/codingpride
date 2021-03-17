@@ -1,8 +1,15 @@
 {% extends 'base.html'%}
 {% load static %}
 {% block title %} Make It Work, make it Right, Make it Fast {% endblock title %}
-{% block content%}
-<div class="container question-section">
+{% block messages %}
+
+{% endblock messages %}
+
+{% block left_sidebar %}
+{% include 'includes/left_sidebar.html' %}
+{% endblock left_sidebar %}
+{% block center%}
+<div class="question-section">
   <div class="row">
     <form method="POST">
       {% csrf_token %}
@@ -12,4 +19,7 @@
     </form>
   </div>
 </div>
-{% endblock content %}
+{% endblock center %}
+{% block right_sidebar %}
+{% include 'includes/right_sidebar.html' %}
+{% endblock right_sidebar %}

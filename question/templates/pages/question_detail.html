@@ -2,20 +2,28 @@
 {% load humanize %}
 {% load comments %}
 
+{% block messages %}
 
-{% block content %}
-<div class="container">
-  <div class="row py-4">
-    <h2>{{ object.title }}</h2>
-    <p>{{ object.date_published | naturaltime }}</p>
-    {% for tag in object.tags.all %}
-    <div class="col-3">
-      <p class="rounded" style="background-color: #E6E7E8;padding-left: 4%; padding-right:4%;">#{{ tag.name }}</p>
+{% endblock messages %}
+
+
+{% block left_sidebar %}
+{% include 'includes/left_sidebar.html' %}
+{% endblock left_sidebar %}
+
+{% block center %}
+  <div class="row">
+    <div class="col-9 d-block">
+      <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
+      <p>Asked {{ object.date_published | naturaltime }}</p>
     </div>
     {% endfor %}
     <hr>
     <p>{{ object.description | safe | linebreaks }}</p>
 
   </div>
-</div>
-{% endblock content %}class
+{% endblock center %}
+
+{% block right_sidebar %}
+{% include 'includes/right_sidebar.html' %}
+{% endblock right_sidebar %}

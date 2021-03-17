@@ -1,7 +1,11 @@
 {% extends 'base.html'%}
 {% load static %}
 {% load humanize %}
-{% block content %}
+{% block left_sidebar %}
+{% include 'includes/left_sidebar.html' %}
+{% endblock left_sidebar %}
+
+{% block center %}
 
 <form action="{% url 'question:search' %}" method="GET">
   <div class="input-group mb-3 search-bar">
@@ -129,4 +133,8 @@
 </nav>
 {% endif %}
 <!--end of Pagination-->
-{% endblock content %}
+{% endblock center %}
+
+{% block right_sidebar %}
+{% include 'includes/right_sidebar.html' %}
+{% endblock right_sidebar %}

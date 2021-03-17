@@ -2,9 +2,16 @@
 {% load humanize %}
 {% load static %}
 
+{% block messages %}
 
-{% block content %}
-<div class="container">
+{% endblock messages %}
+
+
+{% block left_sidebar %}
+{% include 'includes/left_sidebar.html' %}
+{% endblock left_sidebar %}
+
+{% block center %}
   <div class="row">
     <div class="col-9 d-block">
       <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
@@ -74,5 +81,8 @@
         </div>
     </div>
   </div>
-</div>
-{% endblock content %}
+{% endblock center %}
+
+{% block right_sidebar %}
+{% include 'includes/right_sidebar.html' %}
+{% endblock right_sidebar %}

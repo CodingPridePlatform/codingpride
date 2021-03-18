@@ -36,6 +36,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1',
 INSTALLED_APPS = [
     'main',
     'question',
+    'answer',
 
     'widget_tweaks',
     'taggit',
@@ -152,6 +153,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 BASE_URL = config('BASE_URL', default='http://127.0.0.1:8000')
@@ -199,5 +201,3 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
-# ACCOUNT_SIGNUP_FORM_CLASS = ''

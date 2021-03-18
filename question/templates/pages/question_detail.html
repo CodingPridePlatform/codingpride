@@ -2,9 +2,16 @@
 {% load humanize %}
 {% load static %}
 
+{% block messages %}
 
-{% block content %}
-<div class="container">
+{% endblock messages %}
+
+
+{% block left_sidebar %}
+{% include 'includes/left_sidebar.html' %}
+{% endblock left_sidebar %}
+
+{% block center %}
   <div class="row">
     <div class="col-9 d-block">
       <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
@@ -28,7 +35,54 @@
           </div>
           {% endfor %}
         </div>
+        <div class="answers">
+          {% if answers %}
+          {% for answer in answers %}
+          <div class="card py-3 px-1 my-3">
+              <div class="row d-flex align-items-center">
+                <div class="col-2 text-center">
+                  <div class="">
+                    <i class="fa fa-check fa-2x text-success"></i>
+                  </div>
+                  <div class="mt-5"><strong>4</strong></div>
+                  <div class="mt3">
+                    <i class="fa fa-thumbs-o-up fa-2x upvote-click" aria-hidden="true" data-question="{{ question.id }}" upvote-url="{% url 'question:qn-like' %}"></i>
+                  </div>
+                </div>
+                <div class="col-10">
+                  <p class="answer-paragraph">
+                    <p>{{ answer.description | safe | linebreaks }}</p>
+                  </p>
+                  <div class="row small mt-5">
+                    <p class="small mr-5">
+                      answered {{answer.date_answered | naturaltime}}
+                    </p>
+                    <p class="small ml-5">
+                      {{answer.author}} answered this
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          </div>
+        </div>
+      </div>
+          {% endif %}
+        <div class="answer-form">
+          <h5>POST YOUR ANSWER</h5>
+          <form method="POST" action="{% url 'answer:answer' object.slug %}">
+            {% csrf_token %}
+            {{ form.media }}
+            {% include 'includes/b5_form.html' with form=form %}
+            <button type="submit" class="btn btn-outline-primary">Answer</button>
+          </form>
+        </div>
     </div>
   </div>
-</div>
-{% endblock content %}
+{% endblock center %}
+
+{% block right_sidebar %}
+{% include 'includes/right_sidebar.html' %}
+{% endblock right_sidebar %}

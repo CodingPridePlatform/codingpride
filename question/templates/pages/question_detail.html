@@ -17,7 +17,6 @@
       <h4><a href="{{ object.get_absolute_url }}">{{ object.title }}</a></h4>
       <p>Asked {{ object.date_published | naturaltime }}</p>
     </div>
-    {% endfor %}
     <hr>
     <p>{{ object.description | safe | linebreaks }}</p>
 

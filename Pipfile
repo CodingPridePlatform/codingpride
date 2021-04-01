@@ -12,8 +12,6 @@ django-taggit = "*"
 django-ckeditor = "*"
 django-widget-tweaks = "*"
 django-allauth = "*"
-cryptography = "==2.8"
-django-contrib-comments = "*"
 
 [dev-packages]
 autopep8 = "*"

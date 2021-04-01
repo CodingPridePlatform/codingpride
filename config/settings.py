@@ -186,8 +186,12 @@ CKEDITOR_CONFIGS = {
                 'Format', 'Font', 'FontSize', 'CodeSnippet']
         ],
         'extraPlugins': 'codesnippet',
+        'codeSnippet_theme':'dracula'    
     },
+    
 }
+
+
 
 # Django Allauth configurations
 AUTHENTICATION_BACKENDS = [

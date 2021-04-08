@@ -173,6 +173,7 @@ else:
 
 CKEDITOR_CONFIGS = {
     'default': {
+        'skin': 'office2013',
         'toolbar': 'full',
         'height': 'auto',
         'width': '100%',

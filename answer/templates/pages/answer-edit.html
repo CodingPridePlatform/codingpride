@@ -11,7 +11,7 @@
 {% include 'includes/left_sidebar.html' %}
 {% endblock left_sidebar %}
 
-{% block center %}
+{% block content %}
 <div class="container question-section">
   <div class="row">
     <h5><strong>Edit Answer</strong></h5>
@@ -19,12 +19,12 @@
     <form method="POST">
       {% csrf_token %}
       {{form.media}}
-      {% include 'includes/answer_b5_form.html' with form=form %}
+      {% include 'includes/b5_form.html' with form=answer_form %}
       <button type="submit" class="btn btn-primary">Save Answer</button>
     </form>
   </div>
 </div>
-{% endblock center %}
+{% endblock content %}
 
 {% block right_sidebar %}
 {% include 'includes/right_sidebar.html' %}

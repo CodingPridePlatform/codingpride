@@ -39,7 +39,7 @@ def create_edit_question(request, slug=None):
                 extra_tags='alert alert-success'
             )
 
-            return redirect(obj.get_absolute_url())
+            return redirect(to='question:question-list')
 
         else:
             messages.error(request, 'Errors occurred',
@@ -83,7 +83,7 @@ class QuestionDetailView(DetailView):
 
         context["question_like"] = question_like
         context["answers"] = Answer.objects.filter(question__slug = question.slug)
-        context["form"] = form
+        context["answer_form"] = form
         return context
 
 

@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_comments',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -172,6 +173,7 @@ else:
 
 CKEDITOR_CONFIGS = {
     'default': {
+        'skin': 'office2013',
         'toolbar': 'full',
         'height': 'auto',
         'width': '100%',
@@ -185,8 +187,12 @@ CKEDITOR_CONFIGS = {
                 'Format', 'Font', 'FontSize', 'CodeSnippet']
         ],
         'extraPlugins': 'codesnippet',
+        'codeSnippet_theme':'dracula'    
     },
+    
 }
+
+
 
 # Django Allauth configurations
 AUTHENTICATION_BACKENDS = [

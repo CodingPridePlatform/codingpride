@@ -2,34 +2,37 @@
 {% load static %}
 {% load humanize %}
 {% block title %}Make It Work, make it Right, Make it Fast{% endblock title %}
-{% block content %}
 
-<h1>Home Page</h1>
-{% comment %}
-    <form action="">
+{% block content %}
+  <div class="col-md-2">
+    {% include 'includes/left_sidebar.html' %}
+  </div>
+
+  <div class="col-md-7">
+    <form action="{% url 'question:search' %}" method="GET">
       <div class="input-group mb-3 search-bar">
-        <span class="input-group-text" id="SearchBar">
-          <i class="fa fa-search" style="font-family: FontAwesome;"></i>
-        </span>
-        <input type="text" class="form-control border-2 border-secondary rounded-3" placeholder="Search" aria-label="Search"
-          aria-describedby="SearchBar">
+        <input type="text" name="q" value="{{ query }}" class="form-control border-2 border-secondary rounded-3"
+          placeholder="Search" aria-label="Search" aria-describedby="SearchBar">
+        <button type="submit">
+          <span class="input-group-text" id="SearchBar">
+            <i class="fa fa-search" style="font-family: FontAwesome;"></i>
+          </span>
+        </button>
       </div>
     </form>
     <div class="row my-4">
-      <div class="col-6"><h3>All Questions</h3></div>
+      <div class="col-6">
+        <h3>All Questions</h3>
+      </div>
       <div class="col-6 d-flex justify-content-end">
-        {% if request.user.is_authenticated %}
-        <a href="{% url 'question:question-add' %}" class="btn btn-primary">Ask Question</a>
-        {% else %}
-        <button type="button" class="btn btn-primary" id="ask-qn">
+        <a href="{% url 'question:question-add' %}" class="btn btn-primary">
           Ask Question
-          </button>
-        {% endif %}
+        </a>
       </div>
     </div>
     <div class="row my-3">
       <div class="col-md-4">
-        <p>87409 Questions</p>
+        <p>{{ questions | length }} Questions</p>
       </div>
       <div class="col-md-8 text-lg-end col-sm-12 text-sm-center">
         <div class="btn-group" role="group" aria-label="Basic outlined example">
@@ -45,7 +48,7 @@
     <div class="card py-3 px-1 my-3">
       <div class="row d-flex align-items-center">
         <div class="col-2 text-center">
-          <div><strong>4</strong></div>
+          <div><strong>{{ question.question_likes.count }}</strong></div>
           <div>
             <p>Votes</p>
           </div>
@@ -55,74 +58,85 @@
           </div>
         </div>
         <div class="col-10">
-          <a href="{% url 'question:question-detail' question.id %}">
+          <a href="{% url 'question:question-detail' question.slug %}">
             <h4>
               {{question.title}}
             </h4>
           </a>
           <p class="question-paragraph">
-            {{ question.description|safe|striptags|truncatechars:180 }}
+            {{ question.description|safe|striptags|truncatechars:50 }}
           </p>
           <div class="row">
             <div class="col-md-12 d-inline-flex">
               {% for tag in question.tags.all %}
-              <h5><span class="badge {% if forloop.counter|divisibleby:2 %}bg-secondary{% else %}bg-primary{% endif %} me-2" id="{{ tag.id }}">#{{ tag.name}}</span></h5>
-            {% endfor %}
+              <a href="{% url 'question:tag-detail' tag.slug %}">
+                <h5>
+                  <span class="badge {% if forloop.counter|divisibleby:2 %}bg-secondary{% else %}bg-primary{% endif %} me-2"
+                    id="{{ tag.id }}">#{{ tag.name}}</span>
+                </h5>
+              </a>
+              {% endfor %}
             </div>
           </div>
         </div>
       </div>
     </div>
+    {% empty %}
+    <p class="lead">
+      No questions found!
+    </p>
     {% endfor %}
-        <!--Pagination-->
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-          {% if questions.has_previous %}
-              <li class="page-item">
-              <a class="page-link" href="?page={{ questions.previous_page_number }}">Previous</a>
-            </li>
-          {% else %}
-              <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
+    
+    <!--Pagination-->
+    {% if question.paginator %}
+    <nav aria-label="navigation">
+      <ul class="pagination justify-content-center">
+        {% if questions.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ questions.previous_page_number }}">Previous</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        {% endif %}
+    
+        {% if questions.number|add:'-4' > 1 %}
+        <li class="page-item"><a class="page-link" href="?page={{ questions.number|add:'-5' }}">&hellip;</a></li>
+        {% endif %}
+    
+        {% for i in questions.paginator.page_range %}
+        {% if questions.number == i %}
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">
+            {{ i }}
+            <span class="sr-only">(current)</span>
+          </span>
+        </li>
+        {% elif i > questions.number|add:'-5' and i < questions.number|add:'5' %} <li class="page-item"><a class="page-link"
+            href="?page={{ i }}">{{ i }}</a></li>
           {% endif %}
-
-          {% if questions.number|add:'-4' > 1 %}
-              <li class="page-item"><a class="page-link" href="?page={{ questions.number|add:'-5' }}">&hellip;</a></li>
-          {% endif %}
-
-          {% for i in questions.paginator.page_range %}
-              {% if questions.number == i %}
-                  <li class="page-item active" aria-current="page">
-                <span class="page-link">
-                  {{ i }}
-                  <span class="sr-only">(current)</span>
-                </span>
-              </li>
-              {% elif i > questions.number|add:'-5' and i < questions.number|add:'5' %}
-                   <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-              {% endif %}
           {% endfor %}
-
+    
           {% if questions.paginator.num_pages > questions.number|add:'4' %}
-             <li class="page-item"><a class="page-link" href="?page={{ questions.number|add:'5' }}">&hellip;</a></li>
+          <li class="page-item"><a class="page-link" href="?page={{ questions.number|add:'5' }}">&hellip;</a></li>
           {% endif %}
-
+    
           {% if questions.has_next %}
-              <li class="page-item">
-              <a class="page-link" href="?page={{ questions.next_page_number }}">Next</a>
-            </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ questions.next_page_number }}">Next</a>
+          </li>
           {% else %}
-              <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
-            </li>
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+          </li>
           {% endif %}
-        </ul>
-      </nav>
-      <!--end of Pagination-->
-      </div>
-
-    </div>
-  {% endcomment %}
-
-{% endblock %}
+      </ul>
+    </nav>
+    {% endif %}
+    <!--end of Pagination-->
+  </div>
+  <div class="col-md-3">
+    {% include 'includes/right_sidebar.html' %}
+  </div>
+{% endblock content %}

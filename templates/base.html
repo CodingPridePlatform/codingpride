@@ -22,11 +22,6 @@
 
   <body>
     {% include 'includes/header.html' %}
-    {% block messages %}
-    {% include 'messages.html' %}
-    {% endblock messages %}
-
-
     <!-- Signup Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -74,30 +69,23 @@
     </div>
 
     <div class="container my-4">
-      {% block content %}
       <div class="row">
-        <div class="col-md-2">
-          {% block left_sidebar %}
-
-          {% endblock left_sidebar %}
-        </div>
-        <div class="col-md-7">
+        <div class="col-md-4 offset-md-8">
+          {% block messages %}
           {% include 'messages.html' %}
-          {% block center %}{% endblock center %}
-        </div>
-        <div class="col-md-3">
-          {% block right_sidebar %}
-
-          {% endblock right_sidebar %}
+          {% endblock messages %}
         </div>
       </div>
-    {% endblock content %}
+      <div class="row">
+        {% block content %}
+
+        {% endblock content %}
+      </div>
     </div>
 
     {% include 'includes/footer.html' %}
 
     {% include 'includes/scripts.html' %}
-
     {% block javascript %}{% endblock javascript %}
   </body>
 

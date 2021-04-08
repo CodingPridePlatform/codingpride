@@ -41,7 +41,7 @@ def answer(request, slug):
     
     template_name = 'pages/question_detail.html'
     context = {
-        'form': form,
+        'answer_form': form,
     }
     
     return render(request, template_name, context)
@@ -66,9 +66,9 @@ def edit_answer(request, slug):
             messages.error(request, 'Errors occurred',
                            extra_tags='alert alert-danger')
 
-    template_name = 'pages/answer.html'
+    template_name = 'pages/answer-edit.html'
     context = {
-        'form': form,
+        'answer_form': form,
     }
 
     return render(request, template_name, context)

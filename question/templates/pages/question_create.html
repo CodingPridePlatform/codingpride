@@ -1,25 +1,29 @@
 {% extends 'base.html'%}
 {% load static %}
-{% block title %} Make It Work, make it Right, Make it Fast {% endblock title %}
+
+{% block title %} Create Question {% endblock title %}
 {% block messages %}
 
 {% endblock messages %}
 
-{% block left_sidebar %}
-{% include 'includes/left_sidebar.html' %}
-{% endblock left_sidebar %}
-{% block center%}
-<div class="question-section">
-  <div class="row">
-    <form method="POST">
-      {% csrf_token %}
-      {{form.media}}
-      {% include 'includes/b5_form.html' with form=form %}
-      <button type="submit" class="btn btn-primary">Post Your Question</button>
-    </form>
+{% block content %}
+<div class="col-md-2">
+  {% include 'includes/left_sidebar.html' %}
+</div>
+<div class="col-md-7">
+  <div class="question-section">
+    <div class="row">
+      <form method="POST">
+        {% csrf_token %}
+        {{form.media}}
+        {% include 'includes/b5_form.html' with form=form %}
+        <button type="submit" class="btn btn-primary">Post Your Question</button>
+      </form>
+    </div>
   </div>
 </div>
-{% endblock center %}
-{% block right_sidebar %}
-{% include 'includes/right_sidebar.html' %}
-{% endblock right_sidebar %}
+<div class="col-md-3">
+  {% include 'includes/right_sidebar.html' %}
+</div>
+{% endblock content  %}
+

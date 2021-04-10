@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'django_comments',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"

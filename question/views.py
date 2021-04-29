@@ -6,10 +6,10 @@ from django.http import HttpResponseForbidden, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView, ListView
 
+from answer.forms import *
+
 from .forms import QuestionCreateForm
 from .models import *
-
-from answer.forms import *
 
 
 @login_required
@@ -61,7 +61,7 @@ def question_list_view(request):
     paginator = Paginator(all_questions, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+
     template_name = "pages/question_list.html"
     context = {
         'questions': page_obj,
@@ -72,19 +72,9 @@ def question_list_view(request):
 class QuestionDetailView(DetailView):
     model = Question
     template_name = 'pages/question_detail.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(QuestionDetailView, self).get_context_data(**kwargs)
-        slug = self.kwargs.get(self.slug_url_kwarg, None)
-        question = Question.objects.get(slug=slug)
-        question_like = QuestionLike.objects.filter(question=question).count()
-        
-        form = AnswerQuestionForm()
-
-        context["question_like"] = question_like
-        context["answers"] = Answer.objects.filter(question__slug = question.slug)
-        context["answer_form"] = form
-        return context
+    extra_context = {
+        'answer_form': AnswerQuestionForm()
+    }
 
 
 def save_question_like(request):
@@ -93,6 +83,7 @@ def save_question_like(request):
         question = Question.objects.get(pk=questionid)
         user = request.user
         check = QuestionLike.objects.filter(
+
             question=question, user=user).count()
         if check > 0:
             return JsonResponse({'bool': False})

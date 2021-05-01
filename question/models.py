@@ -6,6 +6,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 from taggit.managers import TaggableManager
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
 
 User = settings.AUTH_USER_MODEL
 
@@ -19,6 +21,7 @@ class Question(models.Model):
     date_updated = models.DateTimeField(
         auto_now=True, verbose_name="date updated")
     tags = TaggableManager()
+    comments = GenericRelation(Comment)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
         blank=True, null=True)

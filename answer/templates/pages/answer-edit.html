@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block messages %}
+
+{% endblock messages %}
+
+
+
+{% block content %}
+<div class="col-md-2">
+  {% include 'includes/left_sidebar.html' %}
+</div>
+<div class="col-md-7">
+  <div class="container question-section">
+    <div class="row">
+      <h5><strong>Edit Answer</strong></h5>
+      
+      <form method="POST">
+        {% csrf_token %}
+        {{answer_form.media}}
+        {% include 'includes/b5_form2.html' with form=answer_form %}
+        <button type="submit" class="btn btn-primary">Save Answer</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="col-md-3">
+  {% include 'includes/right_sidebar.html' %}
+</div>
+{% endblock content %}

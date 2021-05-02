@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'comment',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -153,6 +154,10 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
+
+
+LOGIN_URL = '/accounts/login'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 BASE_URL = config('BASE_URL', default='http://127.0.0.1:8000')
@@ -171,6 +176,7 @@ else:
 
 CKEDITOR_CONFIGS = {
     'default': {
+        'skin': 'office2013',
         'toolbar': 'full',
         'height': 'auto',
         'width': '100%',
@@ -184,8 +190,12 @@ CKEDITOR_CONFIGS = {
                 'Format', 'Font', 'FontSize', 'CodeSnippet']
         ],
         'extraPlugins': 'codesnippet',
+        'codeSnippet_theme':'dracula'    
     },
+    
 }
+
+
 
 # Django Allauth configurations
 AUTHENTICATION_BACKENDS = [
@@ -200,5 +210,3 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-
-# ACCOUNT_SIGNUP_FORM_CLASS = ''

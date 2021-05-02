@@ -11,17 +11,17 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/dracula.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <title>{% block title %}Coding Pride{% endblock %}</title>
-    {% block stylesheet %}{% endblock stylesheet %}
+
+    <title>Coding Pride-{% block title %}{% endblock %}</title>
+
+        {% block stylesheet %}{% endblock stylesheet %}
   </head>
 
   <body>
     {% include 'includes/header.html' %}
-    {% include 'messages.html' %}
-
     <!-- Signup Modal -->
     <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -68,25 +68,24 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="row my-4">
-        {% block left_sidebar %}
-
-        {% endblock left_sidebar %}
+    <div class="container my-4">
+      <div class="row">
+        <div class="col-md-4 offset-md-8">
+          {% block messages %}
+          {% include 'messages.html' %}
+          {% endblock messages %}
+        </div>
       </div>
-      <div class="col-md-7 offset-md-2">
-        {% block content %}{% endblock %}
-      </div>
-      <div>
-        {% block right_sidebar %}
+      <div class="row">
+        {% block content %}
 
-        {% endblock right_sidebar %}
+        {% endblock content %}
       </div>
     </div>
+
     {% include 'includes/footer.html' %}
 
     {% include 'includes/scripts.html' %}
-
     {% block javascript %}{% endblock javascript %}
   </body>
 

@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'comment',
 ]
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -153,6 +154,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = 'media/'
 
+
+
+LOGIN_URL = '/accounts/login'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -206,3 +210,5 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

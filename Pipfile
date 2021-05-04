@@ -12,6 +12,8 @@ django-taggit = "*"
 django-ckeditor = "*"
 django-widget-tweaks = "*"
 django-allauth = "*"
+install = "*"
+django-comments-dab = "*"
 
 [dev-packages]
 autopep8 = "*"
@@ -19,4 +21,4 @@ pytest-cov = "*"
 pytest-django = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"

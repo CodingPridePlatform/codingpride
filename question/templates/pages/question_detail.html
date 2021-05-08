@@ -7,7 +7,7 @@
 {% block title %}
 {{ object.title }}
 {% endblock title %}
- 
+
 {% block messages %}
 
 {% endblock messages %}
@@ -50,7 +50,7 @@
             {% endfor %}
             {% render_comments object request %}
           </div>
-          
+
           {% if object.answers %}
           <div class="answers">
             {% for answer in object.answers.all %}
@@ -88,6 +88,7 @@
                   </div>
                 </div>
               </div>
+              {% render_comments answer request %}
               {% endfor %}
           </div>
           {% endif %}

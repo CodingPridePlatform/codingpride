@@ -2,6 +2,7 @@ from uuid import uuid4
 
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 
 from question.models import *
@@ -21,6 +22,7 @@ class Answer(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL,
         blank=True, null=True)
+    comments = GenericRelation(Comment)
 
     def __str__(self):
         return self.question.title + " - " + "Answer" + " - " + str(self.id)

@@ -1,0 +1,8 @@
+Django
+django-allauth
+django-ckeditor
+django-comments-dab
+django-decoupl
+django-taggit
+django-widget-tweak
+psycopg
